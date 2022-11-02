@@ -4,7 +4,7 @@ Juego Wordix desarrollado en introduccion a la proframacion (FAI)
 # Materia 2022
 - Introduccion a la programacion
 - Tecnicatura en desarrollo web
-- facultad de informatica
+- Facultad de informatica
 - Universidad Nacional del Comahue
 
 # Integrantes del grupo 
