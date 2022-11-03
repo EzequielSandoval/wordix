@@ -112,7 +112,8 @@ function escribirSegunEstado($texto, $estado)
 }
 
 /**
- * ****COMPLETAR*****
+ * Muestra un mensaje de bienvenida 
+ * @param string $usuario
  */
 function escribirMensajeBienvenida($usuario)
 {
@@ -125,7 +126,9 @@ function escribirMensajeBienvenida($usuario)
 
 
 /**
- * ****COMPLETAR*****
+ * Verifica si una cadena ingresada es de tipo string y retorna true/false
+ * @param string $cadena
+ * @return bool
  */
 function esPalabra($cadena)
 {
@@ -141,7 +144,8 @@ function esPalabra($cadena)
 }
 
 /**
- *  ****COMPLETAR*****
+ *  Verifica si la palabra ingresada contiene 5 letras y la retorna en mayusculas
+ * @return string
  */
 function leerPalabra5Letras()
 {
@@ -325,6 +329,9 @@ function esIntentoGanado($estructuraPalabraIntento)
 function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
 {
 
+    $numIntento = 1; 
+    
+    
     /* ****COMPLETAR***** cuerpo de la función*/
     return 0;
 }
