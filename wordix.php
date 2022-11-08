@@ -133,7 +133,7 @@ function escribirMensajeBienvenida($usuario)
 function esPalabra($cadena)
 {
     //int $cantCaracteres, $i, boolean $esLetra
-    $cantCaracteres = strlen($cadena);
+    $cantCaracteres = strlen($cadena); // obtiene la longitud de un string
     $esLetra = true;
     $i = 0;
     while ($esLetra && $i < $cantCaracteres) {
@@ -163,7 +163,7 @@ function leerPalabra5Letras()
 
 
 /**
- * Inicia una estructura de datos Teclado. La estructura es de tipo: ¿Indexado, asociativo o Multidimensional?
+ * Inicia una estructura de datos Teclado. La estructura es de tipo: asociativo
  *@return array
  */
 function iniciarTeclado()
@@ -257,7 +257,7 @@ function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palab
         if ($posicion === false) {
             $estado = ESTADO_LETRA_DESCARTADA;
         } else {
-            if ($letraIntento == $palabraWordix[$i]) {
+            if ($letraIntento == $palabraWordix[$i] /* letra de la palabra wordix*/) {
                 $estado = ESTADO_LETRA_ENCONTRADA;
             } else {
                 $estado = ESTADO_LETRA_PERTENECE;
@@ -265,8 +265,10 @@ function analizarPalabraIntento($palabraWordix, $estruturaIntentosWordix, $palab
         }
         array_push($estructuraPalabraIntento, ["letra" => $letraIntento, "estado" => $estado]);
     }
+    // print_r($estructuraPalabraIntento);
 
     array_push($estruturaIntentosWordix, $estructuraPalabraIntento);
+
     return $estruturaIntentosWordix;
 }
 
@@ -324,16 +326,89 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
- * ****COMPLETAR***** documentación de la intefaz
+ * Calcula el puntaje segun los intentos y segun las letras de la palabra acertada 
+ * @param int $intento
+ * @param array $arregloLetras
+ * @return int
  */
-function obtenerPuntajeWordix()  /* ****COMPLETAR***** parámetros formales necesarios */
+function obtenerPuntajeWordix($intento, $arregloLetras)
 {
+    $a = 0;
+    $acumPtsCons = 0;
+    $acumPtsVocal = 0;
 
-    $numIntento = 1; 
-    
-    
-    /* ****COMPLETAR***** cuerpo de la función*/
-    return 0;
+    /**
+     * Calcula los puntos de las letras vocales
+     * @param string $letraVocal 
+     * @return int
+     */              
+    function esVocal($letraVocal)
+    {
+        $puntoVocal = 0;
+        $vocales = ["A", "E", "I", "O", "U"];
+        for ($i = 0; $i < count($vocales); $i++) {
+            if ($letraVocal == $vocales[$i]) {
+                $puntoVocal = $puntoVocal + 1;
+            }
+        };
+        return ($puntoVocal);
+    }
+    /**
+     * Calcula los puntos de las consonantes anteriores y posteriores a M
+     * @param string $letraConsonante
+     * @return int
+     */
+    function esConsonante($letraConsonante)
+    {
+        $puntoConsonante = 0;
+        $consonantes = [
+            "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N",
+            "Ñ", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"
+        ];
+        for ($i = 0; $i < count($consonantes); $i++) {
+            if ($letraConsonante == $consonantes[$i]) {
+                $puntoConsonante = $puntoConsonante + 2;
+                if ($i <= 9) {
+                    $puntoConsonante = $puntoConsonante + 2;
+                } elseif ($i > 9) {
+                    $puntoConsonante = $puntoConsonante + 3;
+                }
+            }
+        };
+        return ($puntoConsonante);
+    }
+
+    while ($a <= 4) {
+        $letras = $arregloLetras[$a]["letra"];
+        $a++;
+        $ptsVocal = esVocal($letras);
+        $ptsCons = esConsonante($letras);
+        $acumPtsVocal = $acumPtsVocal + $ptsVocal;
+        $acumPtsCons = $acumPtsCons + $ptsCons;
+    }
+            // 3
+    switch ($intento) {
+        case 1:
+            $ptsIntentos = 6;
+            break;
+        case 2:
+            $ptsIntentos = 5;
+            break;
+        case 3:
+            $ptsIntentos = 4;
+            break;
+        case 4:
+            $ptsIntentos = 3;
+            break;
+        case 5:
+            $ptsIntentos = 2;
+            break;
+        case 6:
+            $ptsIntentos = 1;
+            break;
+    }
+    $puntosTotal = $acumPtsCons + $acumPtsVocal + $ptsIntentos;
+    return ($puntosTotal);
 }
 
 /**
@@ -360,16 +435,14 @@ function jugarWordix($palabraWordix, $nombreUsuario)
         imprimirIntentosWordix($arregloDeIntentosWordix);
         escribirTeclado($teclado);
         /*Determinar si la plabra intento ganó e incrementar la cantidad de intentos */
-
-        $ganoElIntento = esIntentoGanado($arregloDeIntentosWordix[$indiceIntento]);
+        $ganoElIntento = esIntentoGanado($arregloDeIntentosWordix[$indiceIntento]); //true or false
         $nroIntento++;
     } while ($nroIntento <= CANT_INTENTOS && !$ganoElIntento);
-
-
+    print_r($arregloDeIntentosWordix);
     if ($ganoElIntento) {
-        $nroIntento--;
-        $puntaje = obtenerPuntajeWordix();
-        echo "Adivinó la palabra Wordix en el intento " . $nroIntento . "!: " . $palabraIntento . " Obtuvo $puntaje puntos!";
+        $nroIntento--; // n° de intento en el q se gano
+        $puntaje = obtenerPuntajeWordix($nroIntento, $arregloDeIntentosWordix[$indiceIntento]);                                //0
+        echo "\nAdivinó la palabra Wordix ($palabraIntento) en el intento " . $nroIntento . "!: " . $nombreUsuario . " Obtuvo $puntaje puntos!";
     } else {
         $nroIntento = 0; //reset intento
         $puntaje = 0;
