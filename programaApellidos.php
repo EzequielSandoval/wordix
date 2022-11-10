@@ -37,19 +37,19 @@ function cargarColeccionPalabras()
  * @param int $numPartida
  * @return 
  */
-function datosPartida($arrayPartidas, $numPartida){
+function datosPartida($arrayPartidas, $numPartida)
+{
     echo "*******************************************************************";
-    echo "\nPartida Wordix $numPartida: palabra ".$arrayPartidas[$numPartida]["palabraWordix"];
-    echo "\nJugador: ".$arrayPartidas[$numPartida]["jugador"];
-    echo "\nPuntaje: ".$arrayPartidas[$numPartida]["puntaje"];
-    if (($arrayPartidas[$numPartida]["puntaje"])>0){
-        echo "\nIntento: ".$arrayPartidas[$numPartida]["intentos"];
-    }
-    else {
+    echo "\nPartida Wordix $numPartida: palabra " . $arrayPartidas[$numPartida]["palabraWordix"];
+    echo "\nJugador: " . $arrayPartidas[$numPartida]["jugador"];
+    echo "\nPuntaje: " . $arrayPartidas[$numPartida]["puntaje"];
+    if (($arrayPartidas[$numPartida]["puntaje"]) > 0) {
+        echo "\nIntento: " . $arrayPartidas[$numPartida]["intentos"];
+    } else {
         echo "\nIntento: No adivino la palabra";
     }
     echo "\n*******************************************************************";
-    }
+}
 
 //-------------------- PUNTO 2 DE LA EXPLICACION 3 --------------------
 /**                                                                         
@@ -59,19 +59,16 @@ function datosPartida($arrayPartidas, $numPartida){
 function cargarPartidas()
 {
     $coleccionPartidas = [];
-     $coleccionPartidas[0] = ["palabraWordix" => "QUESO", "jugador" => "majo", "intentos" => 6, "puntaje" => 0];
-     $coleccionPartidas[1] = ["palabraWordix" => "CASAS", "jugador" => "rudolf", "intentos" => 3, "puntaje" => 14];
-     $coleccionPartidas[2] = ["palabraWordix" => "GOTAS", "jugador" => "pink2000", "intentos" => 6, "puntaje" => 10];
-     $coleccionPartidas[3] = ["palabraWordix" => "PISOS", "jugador" => "rudolf", "intentos" => 3, "puntaje" => 16];
-     $coleccionPartidas[4] = ["palabraWordix" => "MELON", "jugador" => "pink2000", "intentos" => 4, "puntaje" => 10];
-     $coleccionPartidas[5] = ["palabraWordix" => "ABEJA", "jugador" => "lucas", "intentos" => 6, "puntaje" => 0];
-     $coleccionPartidas[6] = ["palabraWordix" => "HUEVO", "jugador" => "maria", "intentos" => 2, "puntaje" => 13];
-     $coleccionPartidas[7] = ["palabraWordix" => "TINTO", "jugador" => "majo", "intentos" => 4, "puntaje" => 15];
-     $coleccionPartidas[8] = ["palabraWordix" => "NAVES", "jugador" => "mario", "intentos" => 6, "puntaje" => 12];
-     $coleccionPartidas[9] = ["palabraWordix" => "GOTAS", "jugador" => "mario", "intentos" => 1, "puntaje" => 16];
-
- 
-   
+    $coleccionPartidas[0] = ["palabraWordix" => "QUESO", "jugador" => "majo", "intentos" => 6, "puntaje" => 0];
+    $coleccionPartidas[1] = ["palabraWordix" => "CASAS", "jugador" => "rudolf", "intentos" => 3, "puntaje" => 14];
+    $coleccionPartidas[2] = ["palabraWordix" => "GOTAS", "jugador" => "pink2000", "intentos" => 6, "puntaje" => 10];
+    $coleccionPartidas[3] = ["palabraWordix" => "PISOS", "jugador" => "rudolf", "intentos" => 3, "puntaje" => 16];
+    $coleccionPartidas[4] = ["palabraWordix" => "MELON", "jugador" => "pink2000", "intentos" => 4, "puntaje" => 10];
+    $coleccionPartidas[5] = ["palabraWordix" => "ABEJA", "jugador" => "lucas", "intentos" => 6, "puntaje" => 0];
+    $coleccionPartidas[6] = ["palabraWordix" => "HUEVO", "jugador" => "maria", "intentos" => 2, "puntaje" => 13];
+    $coleccionPartidas[7] = ["palabraWordix" => "TINTO", "jugador" => "majo", "intentos" => 4, "puntaje" => 15];
+    $coleccionPartidas[8] = ["palabraWordix" => "NAVES", "jugador" => "mario", "intentos" => 6, "puntaje" => 12];
+    $coleccionPartidas[9] = ["palabraWordix" => "GOTAS", "jugador" => "mario", "intentos" => 1, "puntaje" => 16];
 }
 
 //-------------------- PUNTO 3 DE LA EXPLICACION 3 --------------------
@@ -79,12 +76,13 @@ function cargarPartidas()
  *muestra el menu de opciones que tendra nuestro programa wordix, y retornara el numero de la eleccion elegida 
  */
 
- function seleccionarOpcion(){
+function seleccionarOpcion()
+{
     //int $opcionElegida
     //int $numMax
     //int $numMin
     //array $lasOpciones
-    
+
     $lasOpciones[1] = "1)Jugar wordix con una palabra elegida.";
     $lasOpciones[2] = "2)Jugar al wordix con una palabra aleatoria.";
     $lasOpciones[3] = "3)Mostrar una partida.";
@@ -96,17 +94,17 @@ function cargarPartidas()
 
     $numMax = count($lasOpciones);
     $numMin = 1;
-    
-    echo "\n".$lasOpciones[1]."\n";
-    echo "\n".$lasOpciones[2]."\n";
-    echo "\n".$lasOpciones[3]."\n";
-    echo "\n".$lasOpciones[4]."\n";
-    echo "\n".$lasOpciones[5]."\n";
-    echo "\n".$lasOpciones[6]."\n";
-    echo "\n".$lasOpciones[7]."\n";
-    echo "\n".$lasOpciones[8]."\n";
-    echo "\n"."ingrese una opcion del menu:";
- 
+
+    echo "\n" . $lasOpciones[1] . "\n";
+    echo "\n" . $lasOpciones[2] . "\n";
+    echo "\n" . $lasOpciones[3] . "\n";
+    echo "\n" . $lasOpciones[4] . "\n";
+    echo "\n" . $lasOpciones[5] . "\n";
+    echo "\n" . $lasOpciones[6] . "\n";
+    echo "\n" . $lasOpciones[7] . "\n";
+    echo "\n" . $lasOpciones[8] . "\n";
+    echo "\n" . "ingrese una opcion del menu:";
+
     $opcionElegida = solicitarNumeroEntre($numMin, $numMax);
     return $opcionElegida;
 }

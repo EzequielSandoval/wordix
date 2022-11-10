@@ -344,7 +344,7 @@ function obtenerPuntajeWordix($intento, $arregloLetras)
      * Calcula los puntos de las letras vocales
      * @param string $letraVocal 
      * @return int
-     */              
+     */
     function esVocal($letraVocal)
     {
         $puntoVocal = 0;
@@ -389,7 +389,7 @@ function obtenerPuntajeWordix($intento, $arregloLetras)
         $acumPtsVocal = $acumPtsVocal + $ptsVocal;
         $acumPtsCons = $acumPtsCons + $ptsCons;
     }
-            // 3
+    // 3
     switch ($intento) {
         case 1:
             $ptsIntentos = 6;
