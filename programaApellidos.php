@@ -30,6 +30,25 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
+/** dado un numero de partida muestra en pantalla los datos de la misma
+ * @param array $partidas
+ * @param int $numPartida
+ * @return 
+ */
+function datosPartida($Partidas, $numPartida){
+    echo "*******************************************************************";
+    echo "\nPartida Wordix $numPartida: palabra ".$Partidas[$numPartida]["palabraWordix"];
+    echo "\nJugador: ".$Partidas[$numPartida]["jugador"];
+    echo "\nPuntaje: ".$Partidas[$numPartida]["puntaje"];
+    if (($Partidas[$numPartida]["puntaje"])>0){
+        echo "\nIntento: ".$Partidas[$numPartida]["intentos"];
+    }
+    else {
+        echo "\nNo adivino la palabra";
+    }
+    echo "\n*******************************************************************";
+    }
+
 /**
  * (muestra las primeras 10 partidas del wordix)
  * 
