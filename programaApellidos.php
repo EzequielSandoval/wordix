@@ -35,16 +35,16 @@ function cargarColeccionPalabras()
  * @param int $numPartida
  * @return 
  */
-function datosPartida($Partidas, $numPartida){
+function datosPartida($arrayPartidas, $numPartida){
     echo "*******************************************************************";
-    echo "\nPartida Wordix $numPartida: palabra ".$Partidas[$numPartida]["palabraWordix"];
-    echo "\nJugador: ".$Partidas[$numPartida]["jugador"];
-    echo "\nPuntaje: ".$Partidas[$numPartida]["puntaje"];
-    if (($Partidas[$numPartida]["puntaje"])>0){
-        echo "\nIntento: ".$Partidas[$numPartida]["intentos"];
+    echo "\nPartida Wordix $numPartida: palabra ".$arrayPartidas[$numPartida]["palabraWordix"];
+    echo "\nJugador: ".$arrayPartidas[$numPartida]["jugador"];
+    echo "\nPuntaje: ".$arrayPartidas[$numPartida]["puntaje"];
+    if (($arrayPartidas[$numPartida]["puntaje"])>0){
+        echo "\nIntento: ".$arrayPartidas[$numPartida]["intentos"];
     }
     else {
-        echo "\nNo adivino la palabra";
+        echo "\nIntento: No adivino la palabra";
     }
     echo "\n*******************************************************************";
     }
