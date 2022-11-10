@@ -14,7 +14,8 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-/**
+//-------------------- PUNTO 1 DE LA EXPLICACION 3 --------------------
+/**                           
  * Obtiene una colección de palabras
  * @return array
  */
@@ -30,6 +31,7 @@ function cargarColeccionPalabras()
     return ($coleccionPalabras);
 }
 
+//--------------------PUNTO 6 DE LA EXPLICACION 3 --------------------
 /** dado un numero de partida muestra en pantalla los datos de la misma
  * @param array $partidas
  * @param int $numPartida
@@ -49,7 +51,8 @@ function datosPartida($arrayPartidas, $numPartida){
     echo "\n*******************************************************************";
     }
 
-/**
+//-------------------- PUNTO 2 DE LA EXPLICACION 3 --------------------
+/**                                                                         
  * (muestra las primeras 10 partidas del wordix)
  * 
  */
@@ -71,6 +74,7 @@ function cargarPartidas()
    
 }
 
+//-------------------- PUNTO 3 DE LA EXPLICACION 3 --------------------
 /**
  *muestra el menu de opciones que tendra nuestro programa wordix, y retornara el numero de la eleccion elegida 
  */

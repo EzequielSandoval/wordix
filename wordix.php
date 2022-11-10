@@ -27,7 +27,10 @@ const ESTADO_LETRA_PERTENECE = "pertenece";
 /**************************************/
 
 /**
- *  ****COMPLETAR*****
+ * (Dado dos numero uno el minimo y el otro el maximo le solicita al usuario que ingrese un numero dentro de ese rango)
+ * @param int $min
+ * @param int $max
+ * @return int
  */
 function solicitarNumeroEntre($min, $max)
 {
