@@ -109,6 +109,18 @@ function seleccionarOpcion()
     return $opcionElegida;
 }
 
+//--------------------PUNTO 7 EXPLICACION 3 --------------------
+
+/**
+ * (agrega una nueva palabra al juego)
+ * @return array 
+ */
+function agregarPalabra ($colecPalabras,$palabraNueva){
+    //int $cantPalabras
+    $cantPalabras=count($colecPalabras);
+    $colecPalabras[$cantPalabras]=$palabraNueva;
+    return $colecPalabras;
+}
 
 /* ... COMPLETAR ... */
 
