@@ -122,6 +122,31 @@ function agregarPalabra ($colecPalabras,$palabraNueva){
     return $colecPalabras;
 }
 
+/** --------------------- PUNTO 10 DE LA EXPLICACION 3 ---------------------
+ * solicita al usuario el nombre de un jugador y lo retorna en minusculas
+ * @param 
+ * @return 
+ */
+
+ function solicitarJugador(){
+    //string $nombreSolicitado
+    echo "ingrese un nombre:\n";
+    $soliNomb = trim(fgets(STDIN));
+    $vof= ctype_alpha($soliNomb);
+    //echo strlen($soliNomb)."\n";
+while ($vof == false){
+          echo "el nombre no es valido\n";
+        echo "ingrese otro nombre: ";
+        $soliNomb = trim(fgets(STDIN));
+        $vof= ctype_alpha($soliNomb);
+     }
+   if ($vof == true) {
+            $soliNomb=strtolower($soliNomb);
+            echo "\n".$soliNomb;
+        }
+ }
+
+
 /* ... COMPLETAR ... */
 
 
