@@ -148,13 +148,13 @@ function agregarPalabra($colecPalabras, $palabraNueva)
 
 //--------------------PUNTO 8 EXPLICACION 3 --------------------
 /** 
-* (retorna el índice de la primera partida ganada por un jugador)
+* (retorna el índice de la primera partida ganada por un jugador, si no gano ninguna, retorna -1.)
 * @param array $collecionPartida
 * @param string $nombJugador
 */
-function primeraVictoria ($nombJugador, $coleccionPartidas){
-    //$num int
-    
+function primeraVictoria ($nombJugador, $partidasGanadas){
+    //$valor, $f, $n, $indice int
+    //
     $f=9;
     $valor =- 1;
     for($n=0; $n<=$f; $n++){
