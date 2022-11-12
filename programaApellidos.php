@@ -14,6 +14,24 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
+//--------------------PUNTO C DE LA EXPLICACION 2 --------------------
+/**
+ * muestra el resumen de jugadores
+ * @return array
+ */
+function cargarResumenJugador()
+{
+    $resumenJugador = [];
+    $resumenJugador[0] = ["jugador" => "majo", "partidas" => 2, "puntaje" => 15, "victorias" => 1, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 1, "intento5" => 0, "intento6" => 1];
+    $resumenJugador[1] = ["jugador" => "rudolf", "partidas" => 2, "puntaje" => 30, "victorias" => 2, "intento1" => 0, "intento2" => 0, "intento3" => 2, "intento4" => 0, "intento5" => 0, "intento6" => 0];
+    $resumenJugador[2] = ["jugador" => "pink2000", "partidas" => 2, "puntaje" => 20, "victorias" => 2, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 1, "intento5" => 0, "intento6" => 1];
+    $resumenJugador[3] = ["jugador" => "lucas", "partidas" => 1, "puntaje" => 0, "victorias" => 0, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 1];
+    $resumenJugador[4] = ["jugador" => "maria", "partidas" => 1, "puntaje" => 13, "victorias" => 1, "intento1" => 0, "intento2" => 1, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 0];
+    $resumenJugador[5] = ["jugador" => "mario", "partidas" => 2, "puntaje" => 28, "victorias" => 2, "intento1" => 1, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 1];
+    return ($resumenJugador);
+}
+
+
 //-------------------- PUNTO 1 DE LA EXPLICACION 3 --------------------
 /**                           
  * Obtiene una colección de palabras
@@ -29,26 +47,6 @@ function cargarColeccionPalabras()
     ];
 
     return ($coleccionPalabras);
-}
-
-//--------------------PUNTO 6 DE LA EXPLICACION 3 --------------------
-/** dado un numero de partida muestra en pantalla los datos de la misma
- * @param array $partidas
- * @param int $numPartida
- * @return 
- */
-function datosPartida($arrayPartidas, $numPartida)
-{
-    echo "*******************************************************************";
-    echo "\nPartida Wordix $numPartida: palabra " . $arrayPartidas[$numPartida]["palabraWordix"];
-    echo "\nJugador: " . $arrayPartidas[$numPartida]["jugador"];
-    echo "\nPuntaje: " . $arrayPartidas[$numPartida]["puntaje"];
-    if (($arrayPartidas[$numPartida]["puntaje"]) > 0) {
-        echo "\nIntento: " . $arrayPartidas[$numPartida]["intentos"];
-    } else {
-        echo "\nIntento: No adivino la palabra";
-    }
-    echo "\n*******************************************************************";
 }
 
 //-------------------- PUNTO 2 DE LA EXPLICACION 3 --------------------
@@ -69,18 +67,6 @@ function cargarPartidas()
     $coleccionPartidas[7] = ["palabraWordix" => "TINTO", "jugador" => "majo", "intentos" => 4, "puntaje" => 15];
     $coleccionPartidas[8] = ["palabraWordix" => "NAVES", "jugador" => "mario", "intentos" => 6, "puntaje" => 12];
     $coleccionPartidas[9] = ["palabraWordix" => "GOTAS", "jugador" => "mario", "intentos" => 1, "puntaje" => 16];
-}
-/**
- * muestra el resumen de jugadores
- * @return array
- */
-function cargarResumenJugador()
-{
-    $resumenJugador = [];
-    $resumenJugador[0] = ["jugador" => "majo", "partidas" => 2, "puntaje" => 15, "victorias" => 1, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 1, "intento5" => 0, "intento6" => 1];
-    $resumenJugador[1] = ["jugador" => "rudolf", "partidas" => 2, "puntaje" => 30, "victorias" => 2, "intento1" => 0, "intento2" => 0, "intento3" => 2, "intento4" => 0, "intento5" => 0, "intento6" => 0];
-    $resumenJugador[2] = ["jugador" => "pink2000", "partidas" => 2, "puntaje" => 20, "victorias" => 1, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 1, "intento5" => 0, "intento6" => 1];
-    return ($resumenJugador);
 }
 
 //-------------------- PUNTO 3 DE LA EXPLICACION 3 --------------------
@@ -121,6 +107,31 @@ function seleccionarOpcion()
     return $opcionElegida;
 }
 
+//--------------------PUNTO 4 DE LA EXPLICACION 3 (ESTA EN EL wordix.php LINEA 150) --------------------
+//--------------------PUNTO 5 DE LA EXPLICACION 3 (ESTA EN EL wordix.php LINEA 30)--------------------
+
+//--------------------PUNTO 6 DE LA EXPLICACION 3 --------------------
+/** dado un numero de partida muestra en pantalla los datos de la misma
+ * @param array $partidas
+ * @param int $numPartida
+ * @return 
+ */
+function datosPartida($arrayPartidas, $numPartida)
+{
+    echo "*******************************************************************";
+    echo "\nPartida Wordix $numPartida: palabra " . $arrayPartidas[$numPartida]["palabraWordix"];
+    echo "\nJugador: " . $arrayPartidas[$numPartida]["jugador"];
+    echo "\nPuntaje: " . $arrayPartidas[$numPartida]["puntaje"];
+    if (($arrayPartidas[$numPartida]["puntaje"]) > 0) {
+        echo "\nIntento: " . $arrayPartidas[$numPartida]["intentos"];
+    } else {
+        echo "\nIntento: No adivino la palabra";
+    }
+    echo "\n*******************************************************************";
+}
+
+
+
 //--------------------PUNTO 7 EXPLICACION 3 --------------------
 
 /**
@@ -133,6 +144,34 @@ function agregarPalabra($colecPalabras, $palabraNueva)
     $cantPalabras = count($colecPalabras);
     $colecPalabras[$cantPalabras] = $palabraNueva;
     return $colecPalabras;
+}
+
+//--------------------PUNTO 8 EXPLICACION 3 --------------------
+/** 
+* (retorna el índice de la primera partida ganada por un jugador)
+* @param array $collecion partida
+* @param string $nombJugador
+*/
+function primeraVictoria ($nombJugador, $coleccionPartidas){
+    //$num int
+    
+
+    $f=9;
+    $valor = -1;
+    for ($n=0; $n<=$f; $n++) {
+        while (($coleccionPartidas[$n]["jugador"] === $nombJugador) && ($coleccionPartidas[$n]["puntaje"]!= 0)) {
+            echo "palabra:".$coleccionPartidas[$n]["palabraWordix"]."\n";
+            echo "jugador:".$coleccionPartidas[$n]["jugador"]."\n";
+            echo "intentos:".$coleccionPartidas[$n]["intentos"]."\n";
+            echo "puntaje:".$coleccionPartidas[$n]["puntaje"]."\n";
+            $n=9; 
+            $valor = 1;  
+        }
+    }
+
+    if($valor == -1){
+        return $valor;
+    }
 }
 
 //--------------------PUNTO 9 EXPLICACION 3 --------------------
@@ -190,6 +229,60 @@ function solicitarJugador()
         $soliNomb = strtolower($soliNomb);
         echo "\n" . $soliNomb;
     }
+}
+//--------------------PUNTO 11 EXPLICACION 3 --------------------
+/**
+ * ( muestra la colección de partidas ordenada por el nombre del jugador y por la palabra)
+ * @param array $coleccPartidas
+ */
+function ordenarColeccionPartidas($coleccPartidas){
+
+    /**
+    * (ordena por nombre del jugador)
+    *@param string $a
+    *@param string $b
+    *@return int
+    */
+    function ordenadoxNombre($a,$b,){
+        if($a["jugador"]==$b["jugador"]){
+            $orden=0;
+        }
+        elseif($a["jugador"]<$b["jugador"]){
+            $orden=-1;
+        }
+        else{
+            $orden=1;
+        }
+        return $orden;   
+    }
+
+    /**
+    * (ordena por palabras)
+    *@param string $a
+    *@param string $b
+    *@return int
+    */
+    function ordenadoxPalabra($a,$b,){
+        if($a==$b){
+            $orden=0;
+        }
+        elseif($a<$b){
+            $orden=-1;
+        }
+        else{
+            $orden=1;
+        }
+        return $orden;  
+    }
+
+    uasort($coleccPartidas, 'ordenadoxNombre');
+    echo "********** ORDENADO POR NOMBRE **********\n";
+    print_r($coleccPartidas);
+
+    uasort($coleccPartidas, 'ordenadoxPalabra');
+    echo "********** ORDENADO POR PALABRA **********\n";
+    Print_r($coleccPartidas);
+
 }
 
 
