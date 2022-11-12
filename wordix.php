@@ -461,3 +461,29 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     return $partida;
 }
+
+/** 
+* @param array $collecion partida
+* @param string $nombJugador
+*/
+function primeraVictoria ($nombJugador, $coleccionPartidas){
+    //$num int
+    
+
+    $f=9;
+    $valor = -1;
+    for ($n=0; $n<=$f; $n++) {
+        while (($coleccionPartidas[$n]["jugador"] === $nombJugador) && ($coleccionPartidas[$n]["puntaje"]!= 0)) {
+            echo "palabra:".$coleccionPartidas[$n]["palabraWordix"]."\n";
+            echo "jugador:".$coleccionPartidas[$n]["jugador"]."\n";
+            echo "intentos:".$coleccionPartidas[$n]["intentos"]."\n";
+            echo "puntaje:".$coleccionPartidas[$n]["puntaje"]."\n";
+            $n=9; 
+            $valor = 1;  
+        }
+    }
+
+    if($valor == -1){
+        return $valor;
+    }
+}
