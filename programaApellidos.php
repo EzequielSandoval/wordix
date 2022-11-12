@@ -149,29 +149,31 @@ function agregarPalabra($colecPalabras, $palabraNueva)
 //--------------------PUNTO 8 EXPLICACION 3 --------------------
 /** 
 * (retorna el índice de la primera partida ganada por un jugador)
-* @param array $collecion partida
+* @param array $collecionPartida
 * @param string $nombJugador
 */
 function primeraVictoria ($nombJugador, $coleccionPartidas){
     //$num int
     
-
     $f=9;
-    $valor = -1;
-    for ($n=0; $n<=$f; $n++) {
-        while (($coleccionPartidas[$n]["jugador"] === $nombJugador) && ($coleccionPartidas[$n]["puntaje"]!= 0)) {
-            echo "palabra:".$coleccionPartidas[$n]["palabraWordix"]."\n";
-            echo "jugador:".$coleccionPartidas[$n]["jugador"]."\n";
-            echo "intentos:".$coleccionPartidas[$n]["intentos"]."\n";
-            echo "puntaje:".$coleccionPartidas[$n]["puntaje"]."\n";
-            $n=9; 
-            $valor = 1;  
+    $valor =- 1;
+    for($n=0; $n<=$f; $n++){
+        if (($coleccionPartidas[$n]["jugador"]==$nombJugador) && ($coleccionPartidas[$n]["puntaje"] != 0)){
+            $valor = 1;
+            $indice = $n;
         }
+        
     }
-
     if($valor == -1){
         return $valor;
+    }else{
+        
+        echo "\n"."palabra jugada:".$coleccionPartidas[$indice]["palabraWordix"]."\n";
+        echo "\n"."jugador:".$coleccionPartidas[$indice]["jugador"]."\n";
+        echo "\n"."intentos realizados:".$coleccionPartidas[$indice]["intentos"]."\n";
+        echo "\n"."puntaje:".$coleccionPartidas[$indice]["puntaje"]."\n";
     }
+
 }
 
 //--------------------PUNTO 9 EXPLICACION 3 --------------------
