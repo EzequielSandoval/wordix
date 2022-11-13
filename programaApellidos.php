@@ -67,6 +67,8 @@ function cargarPartidas()
     $coleccionPartidas[7] = ["palabraWordix" => "TINTO", "jugador" => "majo", "intentos" => 4, "puntaje" => 15];
     $coleccionPartidas[8] = ["palabraWordix" => "NAVES", "jugador" => "mario", "intentos" => 6, "puntaje" => 12];
     $coleccionPartidas[9] = ["palabraWordix" => "GOTAS", "jugador" => "mario", "intentos" => 1, "puntaje" => 16];
+
+    return ($coleccionPartidas);
 }
 
 //-------------------- PUNTO 3 DE LA EXPLICACION 3 --------------------
