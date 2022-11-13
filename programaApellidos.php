@@ -72,8 +72,9 @@ function cargarPartidas()
 }
 
 //-------------------- PUNTO 3 DE LA EXPLICACION 3 --------------------
-/**
- *muestra el menu de opciones que tendra nuestro programa wordix, y retornara el numero de la eleccion elegida 
+/**                                                                                             
+ *muestra el menu de opciones que tendra nuestro programa wordix, y retornara el numero de la eleccion elegida
+ *@return int 
  */
 
 function seleccionarOpcion()
@@ -138,6 +139,8 @@ function datosPartida($arrayPartidas, $numPartida)
 
 /**
  * (agrega una nueva palabra al juego)
+ * @param array $colecPalabras
+ * @param string $palabraNueva                                          
  * @return array 
  */
 function agregarPalabra($colecPalabras, $palabraNueva)
@@ -209,9 +212,8 @@ function resumenUnJugador($nombreJugador)
     }
 }
 /** --------------------- PUNTO 10 DE LA EXPLICACION 3 ---------------------
- * solicita al usuario el nombre de un jugador y lo retorna en minusculas
- * @param 
- * @return 
+ * solicita al usuario el nombre de un jugador y lo retorna en minusculas                                                                          
+ * @return string
  */
 
 function solicitarJugador()
