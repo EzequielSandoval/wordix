@@ -52,7 +52,7 @@ function cargarColeccionPalabras()
 //-------------------- PUNTO 2 DE LA EXPLICACION 3 --------------------
 /**                                                                         
  * (muestra las primeras 10 partidas del wordix)
- * 
+ * @return array
  */
 function cargarPartidas()
 {
