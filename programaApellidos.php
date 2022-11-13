@@ -185,7 +185,6 @@ function primeraVictoria ($nombJugador, $partidasGanadas){
 /**
  * muestra el resumen de un jugador especifico
  * @param string $nombreJugador 
- * @return array
  */
 function resumenUnJugador($nombreJugador)
 {
