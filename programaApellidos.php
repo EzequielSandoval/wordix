@@ -232,8 +232,9 @@ function solicitarJugador()
     }
     if ($vof == true) {
         $soliNomb = strtolower($soliNomb);
-        echo "\n" . $soliNomb;
+        //echo "\n" . $soliNomb;
     }
+    return $soliNomb;
 }
 //--------------------PUNTO 11 EXPLICACION 3 --------------------
 /**
@@ -327,8 +328,12 @@ for ($i = 0; $i < count($verColeccionPartidas); $i++) {
 
 
 
+//jugar wordix con palabra aleatoria
+$sumaPalaAleatoria = (count($verColeccionPalabras)-1);
+$numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
+$nomMinuscula=solicitarJugador();
+$partida = jugarWordix($verColeccionPalabras[$numeroPalaAleatoria], "$nomMinuscula");
 
-$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
 
