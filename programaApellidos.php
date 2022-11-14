@@ -400,6 +400,16 @@ do {
             
             $partida = jugarWordix($verColeccionPalabras[$numeroPalaAleatoria], strtolower($jugadorWordix));
 
+            //(POR SI QUIEREN VER EL AGREGADO DE PARTIDAS)
+            //echo "*********ANTES DE AGREGAR LA PARTIDA********";
+            //print_r($verColeccionPartidas);
+
+            $verColeccionPartidas=agregarPartida($verColeccionPartidas,$partida);
+            
+            //echo "*********DESPUES DE AGREGAR LA PARTIDA********";
+            //print_r($verColeccionPartidas);
+            
+
             break;
         case 3: 
             //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
