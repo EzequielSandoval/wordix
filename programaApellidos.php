@@ -288,6 +288,19 @@ function ordenarColeccionPartidas($coleccPartidas)
     echo "********** ORDENADO POR PALABRA **********\n";
     Print_r($coleccPartidas);
 }
+//--------------------PODRIA SERVIR UN POQUIS --------------------
+/**
+ * (agrega una nueva partida al juego)
+ * @param array $colecPartida
+ * @param array $partidaNueva                                          
+ * @return array 
+ */
+function agregarPartida($colecPartida, $partidaNueva){
+    //int $totalPartidas
+    $totalPartidas = count($colecPartida);
+    $colecPartida[$totalPartidas] = $partidaNueva;
+    return $colecPartida;
+}
 
 
 /* ... COMPLETAR ... */
@@ -307,50 +320,63 @@ function ordenarColeccionPartidas($coleccPartidas)
 //Proceso:
 
 
+
+//$partida = jugarWordix("MELON", strtolower("MaJo"));
+//print_r($partida);
+//imprimirResultado($partida);
+
 $verColeccionPartidas = cargarPartidas();
 $verColeccionPalabras = cargarColeccionPalabras();
 
 
-for ($i = 0; $i < count($verColeccionPartidas); $i++) {
-    if (($verColeccionPalabras[$numeroDePalabra] == $verColeccionPartidas[$i]["palabraWordix"])) {
-        $esPalabraUsada = true;
-    } else {
-        $esPalabraUsada = false;
-    }
-    if (($nombreIngresado == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada) {
-        echo "la palabra " . $verColeccionPalabras[$numeroDePalabra] .  " ya fue utilizada por el jugador: " . $nombreIngresado;
-    }
-}
 
-
-
-
-
-
-
-//jugar wordix con palabra aleatoria
-$sumaPalaAleatoria = (count($verColeccionPalabras)-1);
-$numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
-$nomMinuscula=solicitarJugador();
-$partida = jugarWordix($verColeccionPalabras[$numeroPalaAleatoria], "$nomMinuscula");
-
-//print_r($partida);
-//imprimirResultado($partida);
-
-
-
-/*
 do {
-    $opcion = ...;
+    $opcion = seleccionarOpcion();
 
     
     switch ($opcion) {
-        case 1: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 1
+        case 1:
+
+            $jugadorWordix=solicitarJugador();
+
+            echo "ingrese un numero de palabra para jugar: \n";
+
+            $cantidadPalabras=count($verColeccionPalabras);
+            $numeroPalabra=solicitarNumeroEntre(1,$cantidadPalabras);
+            
+            
+            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
+                do{
+                if (($verColeccionPalabras[$numeroPalabra-1] == $verColeccionPartidas[$i]["palabraWordix"])) {
+                    $esPalabraUsada = true;
+                } else {
+                    $esPalabraUsada = false;
+                }
+                if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada) {
+                    echo "la palabra " . $verColeccionPalabras[$numeroPalabra] .  " ya fue utilizada por el jugador: " . $nombreIngresado."\n";
+                    echo "ingrese otro numero de palabra para jugar: ";
+                    $numeroPalabra=solicitarNumeroEntre(1,$cantidadPalabras);
+                }
+                } while((($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada));
+            }
+            $partida = jugarWordix($verColeccionPalabras[$numeroPalabra-1], strtolower($jugadorWordix));
+
+            //(POR SI QUIEREN VER EL AGREGADO DE PARTIDAS)
+            //echo "*********ANTES DE AGREGAR LA PARTIDA********";
+            //print_r($verColeccionPartidas);
+
+            $verColeccionPartidas=agregarPartida($verColeccionPartidas,$partida);
+            
+            //echo "*********DESPUES DE AGREGAR LA PARTIDA********";
+            //print_r($verColeccionPartidas);
 
             break;
         case 2: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 2
+            //jugar wordix con palabra aleatoria
+            $sumaPalaAleatoria = (count($verColeccionPalabras)-1);
+            $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
+            $nomMinuscula=solicitarJugador();
+            $partida = jugarWordix($verColeccionPalabras[$numeroPalaAleatoria], "$nomMinuscula");
 
             break;
         case 3: 
@@ -360,5 +386,4 @@ do {
         
             //...
     }
-} while ($opcion != X);
-*/
+} while ($opcion != 8);
