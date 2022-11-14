@@ -313,6 +313,11 @@ function agregarPartida($colecPartida, $partidaNueva){
 
 //Declaración de variables:
 
+// int $opcion,$cantidadPalabras,$numeroPalabra,$i
+// string $jugadorWordix
+// array $verColeccionPartidas,$verColeccionPalabras,$partida
+// boolean $esPalabraUsada
+
 
 //Inicialización de variables:
 
@@ -375,8 +380,25 @@ do {
             //jugar wordix con palabra aleatoria
             $sumaPalaAleatoria = (count($verColeccionPalabras)-1);
             $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
-            $nomMinuscula=solicitarJugador();
-            $partida = jugarWordix($verColeccionPalabras[$numeroPalaAleatoria], "$nomMinuscula");
+            $jugadorWordix=solicitarJugador();
+            
+            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
+                do{
+                    if (($verColeccionPalabras[$numeroPalaAleatoria] == $verColeccionPartidas[$i]["palabraWordix"])) {
+                        $esPalabraUsada = true;
+                    } else {
+                        $esPalabraUsada = false;
+                    }
+                    if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada) {
+
+                    $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
+
+                    }
+                } while((($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada));
+            }
+            
+            
+            $partida = jugarWordix($verColeccionPalabras[$numeroPalaAleatoria], strtolower($jugadorWordix));
 
             break;
         case 3: 
