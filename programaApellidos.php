@@ -218,11 +218,12 @@ function resumenUnJugador($nombreJugador)
 function solicitarJugador()
 {
     //string $nombreSolicitado
+    //boolean $vof
+    //array $primLetra
     echo "ingrese un nombre:\n";
     $soliNomb = trim(fgets(STDIN));
     $primLetra = str_split($soliNomb);
     $vof = ctype_alpha($primLetra[0]);
-    //echo strlen($soliNomb)."\n";
     while ($vof == false) {
         echo "el nombre no es valido\n";
         echo "ingrese otro nombre: ";
