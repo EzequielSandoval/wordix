@@ -385,5 +385,17 @@ do {
             break;
         
             //...
-    }
+        case 7:
+            //AGREGAR PALABRA
+            echo "ingrese una nueva palabra de 5 letras:\n";
+            $palNueva = trim(fgets(STDIN));
+            if (strlen($palNueva)!==5){
+                echo "DEBE TENER 5 LETRAS\n\nIngrese una nueva palabra de 5 letras:";
+                $palNueva=trim(fgets(STDIN));
+            }
+            else {
+                array_push($verColeccionPalabras, $palNueva);
+            }
+            print_r($verColeccionPalabras);
+        }
 } while ($opcion != 8);
