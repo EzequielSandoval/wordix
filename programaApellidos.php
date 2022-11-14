@@ -402,7 +402,22 @@ do {
 
             break;
         case 3: 
-            //completar qué secuencia de pasos ejecutar si el usuario elige la opción 3
+            
+            $cantPartidas=count($verColeccionPartidas);
+            $var=0;
+
+            echo "\n"."ingrese un numero de partida para visualizar:"."\n";
+            $numPartidaVer=solicitarNumeroEntre($var, $cantPartidas);
+
+            echo "\n".trim("partida WORDIX:").trim($numPartidaVer).trim(":palabra:").trim($verColeccionPartidas[$numPartidaVer]["palabraWordix"])."\n";
+            echo trim("jugador:").trim($verColeccionPartidas[$numPartidaVer]["jugador"])."\n";
+            echo trim("puntaje:").trim($verColeccionPartidas[$numPartidaVer]["puntaje"])."\n";
+            
+                if($verColeccionPartidas[$numPartidaVer]["puntaje"]==0){
+                    echo "no adivino la palabra";
+                }else{
+                    echo trim("adivino la palabra en:").trim($verColeccionPartidas[$numPartidaVer]["intentos"]);
+                }
 
             break;
         
