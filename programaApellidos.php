@@ -437,7 +437,33 @@ do {
                 }
             }
             break;
+        case 5:
 
+            $nombreEstadis=solicitarJugador();
+            $resultado=0;
+
+                for($l=0; $l < count($verColeccionPartidas); $l++){
+                    if($nombreEstadis == $verColeccionPartidas[$l]["jugador"]){
+
+                        $resultado=1;
+
+                    }
+                }
+            
+            if(($resultado==0)){
+                echo "el jugador ingresado no a jugado ninguna partida, ingrese otro nombre";
+                do{
+                    $nombreEstadis=solicitarJugador();
+                    if( $verColeccionPartidas[$l]["jugador"] == $nombreEstadis ){
+                        $resultado=1;
+                    }
+                
+                }while($verColeccionPartidas[$l]["jugador"]!=$nombreEstadis);
+            }  
+
+            resumenUnJugador($nombreEstadis);
+
+            break;
 
         case 7:
             //AGREGAR PALABRA
