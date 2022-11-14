@@ -398,4 +398,4 @@ do {
             }
             print_r($verColeccionPalabras);
         }
-} while ($opcion != 8);
+} while ($opcion < 8 && $opcion >= 1);
