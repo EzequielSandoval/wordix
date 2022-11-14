@@ -153,32 +153,31 @@ function agregarPalabra($colecPalabras, $palabraNueva)
 
 //--------------------PUNTO 8 EXPLICACION 3 --------------------
 /** 
-* (retorna el índice de la primera partida ganada por un jugador, si no gano ninguna, retorna -1.)
-* @param array $partidasGanadas
-* @param string $nombJugador
-*/
-function primeraVictoria ($nombJugador, $partidasGanadas){
+ * (retorna el índice de la primera partida ganada por un jugador, si no gano ninguna, retorna -1.)
+ * @param array $partidasGanadas
+ * @param string $nombJugador
+ */
+function primeraVictoria($nombJugador, $partidasGanadas)
+{
     //$valor, $f, $n, $indice int
     //
-    $f=9;
-    $valor =- 1;
-    for($n=0; $n<=$f; $n++){
-        if (($partidasGanadas[$n]["jugador"]==$nombJugador) && ($partidasGanadas[$n]["puntaje"] != 0)){
+    $f = 9;
+    $valor = -1;
+    for ($n = 0; $n <= $f; $n++) {
+        if (($partidasGanadas[$n]["jugador"] == $nombJugador) && ($partidasGanadas[$n]["puntaje"] != 0)) {
             $valor = 1;
             $indice = $n;
         }
-        
     }
-    if($valor == -1){
+    if ($valor == -1) {
         return $valor;
-    }else{
-        
-        echo "\n"."palabra jugada:".$partidasGanadas[$indice]["palabraWordix"]."\n";
-        echo "\n"."jugador:".$partidasGanadas[$indice]["jugador"]."\n";
-        echo "\n"."intentos realizados:".$partidasGanadas[$indice]["intentos"]."\n";
-        echo "\n"."puntaje:".$partidasGanadas[$indice]["puntaje"]."\n";
-    }
+    } else {
 
+        echo "\n" . "palabra jugada:" . $partidasGanadas[$indice]["palabraWordix"] . "\n";
+        echo "\n" . "jugador:" . $partidasGanadas[$indice]["jugador"] . "\n";
+        echo "\n" . "intentos realizados:" . $partidasGanadas[$indice]["intentos"] . "\n";
+        echo "\n" . "puntaje:" . $partidasGanadas[$indice]["puntaje"] . "\n";
+    }
 }
 
 //--------------------PUNTO 9 EXPLICACION 3 --------------------
@@ -241,44 +240,43 @@ function solicitarJugador()
  * ( muestra la colección de partidas ordenada por el nombre del jugador y por la palabra)
  * @param array $coleccPartidas
  */
-function ordenarColeccionPartidas($coleccPartidas){
+function ordenarColeccionPartidas($coleccPartidas)
+{
 
     /**
-    * (ordena por nombre del jugador)
-    *@param string $a
-    *@param string $b
-    *@return int
-    */
-    function ordenadoxNombre($a,$b,){
-        if($a["jugador"]==$b["jugador"]){
-            $orden=0;
+     * (ordena por nombre del jugador)
+     *@param string $a
+     *@param string $b
+     *@return int
+     */
+    function ordenadoxNombre($a, $b,)
+    {
+        if ($a["jugador"] == $b["jugador"]) {
+            $orden = 0;
+        } elseif ($a["jugador"] < $b["jugador"]) {
+            $orden = -1;
+        } else {
+            $orden = 1;
         }
-        elseif($a["jugador"]<$b["jugador"]){
-            $orden=-1;
-        }
-        else{
-            $orden=1;
-        }
-        return $orden;   
+        return $orden;
     }
 
     /**
-    * (ordena por palabras)
-    *@param string $a
-    *@param string $b
-    *@return int
-    */
-    function ordenadoxPalabra($a,$b,){
-        if($a==$b){
-            $orden=0;
+     * (ordena por palabras)
+     *@param string $a
+     *@param string $b
+     *@return int
+     */
+    function ordenadoxPalabra($a, $b,)
+    {
+        if ($a == $b) {
+            $orden = 0;
+        } elseif ($a < $b) {
+            $orden = -1;
+        } else {
+            $orden = 1;
         }
-        elseif($a<$b){
-            $orden=-1;
-        }
-        else{
-            $orden=1;
-        }
-        return $orden;  
+        return $orden;
     }
 
     uasort($coleccPartidas, 'ordenadoxNombre');
@@ -288,7 +286,6 @@ function ordenarColeccionPartidas($coleccPartidas){
     uasort($coleccPartidas, 'ordenadoxPalabra');
     echo "********** ORDENADO POR PALABRA **********\n";
     Print_r($coleccPartidas);
-
 }
 
 
@@ -307,6 +304,26 @@ function ordenarColeccionPartidas($coleccPartidas){
 
 
 //Proceso:
+
+
+$verColeccionPartidas = cargarPartidas();
+$verColeccionPalabras = cargarColeccionPalabras();
+
+
+for ($i = 0; $i < count($verColeccionPartidas); $i++) {
+    if (($verColeccionPalabras[$numeroDePalabra] == $verColeccionPartidas[$i]["palabraWordix"])) {
+        $esPalabraUsada = true;
+    } else {
+        $esPalabraUsada = false;
+    }
+    if (($nombreIngresado == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada) {
+        echo "la palabra " . $verColeccionPalabras[$numeroDePalabra] .  " ya fue utilizada por el jugador: " . $nombreIngresado;
+    }
+}
+
+
+
+
 
 
 
