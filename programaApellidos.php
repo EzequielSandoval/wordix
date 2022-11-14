@@ -426,6 +426,7 @@ do {
 
         case 4:
             $jugadorWordix = solicitarJugador();
+            $menorIndice = 999999999;
             for ($i = 0; $i < count($verColeccionPartidas); $i++) {
                 if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && ($verColeccionPartidas[$i]["puntaje"] > 0)) {
 
