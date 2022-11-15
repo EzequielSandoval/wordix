@@ -450,15 +450,17 @@ do {
                     }
                 }
             
-            if(($resultado==0)){
+            while(($resultado==0)){
                 echo "el jugador ingresado no a jugado ninguna partida, ingrese otro nombre";
-                do{
-                    $nombreEstadis=solicitarJugador();
-                    if( $verColeccionPartidas[$l]["jugador"] == $nombreEstadis ){
+                
+                $nombreEstadis=solicitarJugador();
+
+                for($l=0; $l < count($verColeccionPartidas); $l++){
+                     if( $verColeccionPartidas[$l]["jugador"] == $nombreEstadis ){
                         $resultado=1;
                     }
+                }    
                 
-                }while($verColeccionPartidas[$l]["jugador"]!=$nombreEstadis);
             }  
 
             resumenUnJugador($nombreEstadis);
