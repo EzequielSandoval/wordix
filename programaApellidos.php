@@ -314,7 +314,7 @@ function agregarPartida($colecPartida, $partidaNueva)
 
 //Declaración de variables:
 
-// int $opcion,$cantidadPalabras,$numeroPalabra,$i
+// int $opcion,$cantidadPalabras,$numeroPalabra,$i,$sumaPalaAleatoria
 // string $jugadorWordix
 // array $verColeccionPartidas,$verColeccionPalabras,$partida
 // boolean $esPalabraUsada
