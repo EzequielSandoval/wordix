@@ -362,6 +362,7 @@ do {
                         echo "la palabra " . $verColeccionPalabras[$numeroPalabra - 1] .  " ya fue utilizada por el jugador: " . $jugadorWordix . "\n";
                         echo "ingrese otro numero de palabra para jugar: ";
                         $numeroPalabra = solicitarNumeroEntre(1, $cantidadPalabras);
+                        $i=0;
                     }
                 } while ((($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada));
             }
