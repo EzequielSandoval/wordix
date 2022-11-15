@@ -500,7 +500,7 @@ do {
         case 8:
             echo "********";
             echo "ADIOSSS";
-            echo "*********"
+            echo "*********";
             break;
 
     }
