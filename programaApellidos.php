@@ -476,10 +476,10 @@ do {
 
         case 7:
            $palNueva=leerPalabra5Letras();
-             
-            for($e=0; $e<=count($verColeccionPalabras);$e++){
-                while(strtoupper($palNueva)==$verColeccionPalabras[$e]){
-                    echo "esa palabra ya existe, eliga otra \n";
+           
+            for($e=0; $e < count($verColeccionPalabras) ;$e++){
+                while(strtoupper($palNueva)==$verColeccionPalabras[$e] ){
+                    echo "esa palabra ya existe, eliga otra";
                     $pal=1;
                     if($pal==1){
                         $palNueva=leerPalabra5Letras();
@@ -488,14 +488,10 @@ do {
                 }
 
             }
-            
-            $palabrasFinal=$verColeccionPalabras;
-            $verColeccionPalabras=agregarPalabra($palabrasFinal, $palNueva);
+            $verColeccionPalabras=agregarPalabra($verColeccionPalabras, $palNueva);
             //print_r($verColeccionPalabras);
+
             
-            //array_push($verColeccionPalabras, strtoupper($palNueva));
-            
-            //print_r($verColeccionPalabras);
             
             break;
         case 8:
