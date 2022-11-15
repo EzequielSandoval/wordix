@@ -393,6 +393,7 @@ do {
                     if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada) {
 
                         $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
+                        $i=0;
                     }
                 } while ((($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada));
             }
@@ -464,6 +465,11 @@ do {
             }  
 
             resumenUnJugador($nombreEstadis);
+
+            break;
+        case 6:
+
+            ordenarColeccionPartidas($verColeccionPartidas);
 
             break;
 
