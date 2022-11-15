@@ -474,46 +474,34 @@ do {
             break;
 
         case 7:
-            //AGREGAR PALABRA
-            //echo "ingrese una nueva palabra de 5 letras:\n";
-            //$palNueva = trim(fgets(STDIN));
-            //if (strlen($palNueva) !== 5) {
-               // echo "DEBE TENER 5 LETRAS\n\nIngrese una nueva palabra de 5 letras:";
-                //$palNueva = trim(fgets(STDIN));
-            //} else {
-                //array_push($verColeccionPalabras, $palNueva);
-           // }
-            //print_r($verColeccionPalabras);
-            //AGREGAR PALABRA
-            echo "ingrese una nueva palabra de 5 letras:\n";
-            $palNueva = trim(fgets(STDIN));
-            strtoupper($palNueva);
-            while (strlen($palNueva) < 5 || strlen($palNueva) > 5) {
-                echo "DEBE TENER 5 LETRAS\n\nIngrese una nueva palabra de 5 letras:";
-                $palNueva = trim(fgets(STDIN));
-                strtoupper($palNueva);
-            } 
+           $palNueva=leerPalabra5Letras();
+             
             for($e=0; $e<=count($verColeccionPalabras);$e++){
                 while(strtoupper($palNueva)==$verColeccionPalabras[$e]){
                     echo "esa palabra ya existe, eliga otra";
                     $pal=1;
                     if($pal==1){
-                        echo "ingrese una nueva palabra de 5 letras:\n";
-                        $palNueva = trim(fgets(STDIN));
-                        strtoupper($palNueva);
-                        while (strlen($palNueva) < 5 || strlen($palNueva) > 5) {
-                            echo "DEBE TENER 5 LETRAS\n\nIngrese una nueva palabra de 5 letras:";
-                            $palNueva = trim(fgets(STDIN));
-                            strtoupper($palNueva);
-                        } 
-                    }
+                        $palNueva=leerPalabra5Letras();
+                    } 
+                    
                 }
 
             }
             
-            array_push($verColeccionPalabras, strtoupper($palNueva));
+            $palabrasFinal=$verColeccionPalabras;
+            $palabrasFinal=agregarPalabra($palabrasFinal, $palNueva);
+            print_r($palabrasFinal);
             
-            print_r($verColeccionPalabras);
+            //array_push($verColeccionPalabras, strtoupper($palNueva));
+            
+            //print_r($verColeccionPalabras);
+            
+            break;
+        case 8:
+            echo "********";
+            echo "ADIOSSS";
+            echo "*********"
+            break;
 
     }
 } while ($opcion < 8 && $opcion >= 1);
