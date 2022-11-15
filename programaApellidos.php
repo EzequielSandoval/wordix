@@ -502,7 +502,7 @@ do {
            
             for($e=0; $e < count($verColeccionPalabras) ;$e++){
                 while(strtoupper($palNueva)==$verColeccionPalabras[$e] ){
-                    echo "esa palabra ya existe, eliga otra";
+                    echo "esa palabra ya existe, eliga otra\n";
                     $pal=1;
                     if($pal==1){
                         $palNueva=leerPalabra5Letras();
