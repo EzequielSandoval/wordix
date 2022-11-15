@@ -501,4 +501,4 @@ do {
             break;
 
     }
-} while ($opcion < 8 && $opcion >= 1);
+} while ($opcion <= 8 && $opcion >= 1);
