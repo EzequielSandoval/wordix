@@ -161,23 +161,23 @@ function primeraVictoria($nombJugador, $partidasGanadas)
 {
     //$valor, $f, $n, $indice int
     //
-    $f = 9;
-    $valor = -1;
-    for ($n = 0; $n <= $f; $n++) {
-        if (($partidasGanadas[$n]["jugador"] == $nombJugador) && ($partidasGanadas[$n]["puntaje"] != 0)) {
-            $valor = 1;
-            $indice = $n;
-        }
+   $indice=0;
+    $total=$partidasGanadas;
+    $f=0;
+    foreach($total as $indice){
+        $f=$f+1;
     }
-    if ($valor == -1) {
-        return $valor;
-    } else {
 
-        echo "\n" . "palabra jugada:" . $partidasGanadas[$indice]["palabraWordix"] . "\n";
-        echo "\n" . "jugador:" . $partidasGanadas[$indice]["jugador"] . "\n";
-        echo "\n" . "intentos realizados:" . $partidasGanadas[$indice]["intentos"] . "\n";
-        echo "\n" . "puntaje:" . $partidasGanadas[$indice]["puntaje"] . "\n";
-    }
+    $valor =- 1;
+    $romper=0;
+    for($n=0; $n < $f; $n++){
+         if(($partidasGanadas[$n]["jugador"]==$nombJugador) && ($partidasGanadas[$n]["puntaje"] != 0) && $romper==0){
+            $valor = $n;
+            $romper=1;
+        }
+        
+    }    
+    return $valor;
 }
 
 //--------------------PUNTO 9 EXPLICACION 3 --------------------
