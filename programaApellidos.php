@@ -104,7 +104,7 @@ function seleccionarOpcion()
     echo "\n" . $lasOpciones[6] . "\n";
     echo "\n" . $lasOpciones[7] . "\n";
     echo "\n" . $lasOpciones[8] . "\n";
-    echo "\n" . "ingrese una opcion del menu:";
+    echo "\n" . "ingrese una opcion del menu: ";
 
     $opcionElegida = solicitarNumeroEntre($numMin, $numMax);
     return $opcionElegida;
@@ -453,7 +453,7 @@ do {
                 }
             
             while(($resultado==0)){
-                echo "el jugador ingresado no a jugado ninguna partida, ingrese otro nombre";
+                echo "el jugador ingresado no a jugado ninguna partida \n";
                 
                 $nombreEstadis=solicitarJugador();
 
@@ -479,7 +479,7 @@ do {
              
             for($e=0; $e<=count($verColeccionPalabras);$e++){
                 while(strtoupper($palNueva)==$verColeccionPalabras[$e]){
-                    echo "esa palabra ya existe, eliga otra";
+                    echo "esa palabra ya existe, eliga otra \n";
                     $pal=1;
                     if($pal==1){
                         $palNueva=leerPalabra5Letras();
@@ -490,8 +490,8 @@ do {
             }
             
             $palabrasFinal=$verColeccionPalabras;
-            $palabrasFinal=agregarPalabra($palabrasFinal, $palNueva);
-            print_r($palabrasFinal);
+            //$palabrasFinal=agregarPalabra($palabrasFinal, $palNueva);
+            //print_r($palabrasFinal);
             
             //array_push($verColeccionPalabras, strtoupper($palNueva));
             
