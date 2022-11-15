@@ -122,7 +122,7 @@ function seleccionarOpcion()
 function datosPartida($arrayPartidas, $numPartida)
 {
     echo "*******************************************************************";
-    echo "\nPartida Wordix $numPartida: palabra " . $arrayPartidas[$numPartida]["palabraWordix"];
+    echo "\nPartida Wordix ".($numPartida+1).": palabra ". $arrayPartidas[$numPartida]["palabraWordix"];
     echo "\nJugador: " . $arrayPartidas[$numPartida]["jugador"];
     echo "\nPuntaje: " . $arrayPartidas[$numPartida]["puntaje"];
     if (($arrayPartidas[$numPartida]["puntaje"]) > 0) {
@@ -419,9 +419,9 @@ do {
             $var = 1;
 
             echo "\n" . "ingrese un numero de partida para visualizar:" . "\n";
-            $numPartidaVer = solicitarNumeroEntre($var, $cantPartidas-1);
+            $numPartidaVer = solicitarNumeroEntre($var, $cantPartidas);
 
-            datosPartida($verColeccionPartidas, $numPartidaVer);
+            datosPartida($verColeccionPartidas, $numPartidaVer-1);
 
             break;
 
