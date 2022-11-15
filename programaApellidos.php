@@ -469,14 +469,45 @@ do {
 
         case 7:
             //AGREGAR PALABRA
+            //echo "ingrese una nueva palabra de 5 letras:\n";
+            //$palNueva = trim(fgets(STDIN));
+            //if (strlen($palNueva) !== 5) {
+               // echo "DEBE TENER 5 LETRAS\n\nIngrese una nueva palabra de 5 letras:";
+                //$palNueva = trim(fgets(STDIN));
+            //} else {
+                //array_push($verColeccionPalabras, $palNueva);
+           // }
+            //print_r($verColeccionPalabras);
+            //AGREGAR PALABRA
             echo "ingrese una nueva palabra de 5 letras:\n";
             $palNueva = trim(fgets(STDIN));
-            if (strlen($palNueva) !== 5) {
+            strtoupper($palNueva);
+            while (strlen($palNueva) < 5 || strlen($palNueva) > 5) {
                 echo "DEBE TENER 5 LETRAS\n\nIngrese una nueva palabra de 5 letras:";
                 $palNueva = trim(fgets(STDIN));
-            } else {
-                array_push($verColeccionPalabras, $palNueva);
+                strtoupper($palNueva);
+            } 
+            for($e=0; $e<=count($verColeccionPalabras);$e++){
+                while(strtoupper($palNueva)==$verColeccionPalabras[$e]){
+                    echo "esa palabra ya existe, eliga otra";
+                    $pal=1;
+                    if($pal==1){
+                        echo "ingrese una nueva palabra de 5 letras:\n";
+                        $palNueva = trim(fgets(STDIN));
+                        strtoupper($palNueva);
+                        while (strlen($palNueva) < 5 || strlen($palNueva) > 5) {
+                            echo "DEBE TENER 5 LETRAS\n\nIngrese una nueva palabra de 5 letras:";
+                            $palNueva = trim(fgets(STDIN));
+                            strtoupper($palNueva);
+                        } 
+                    }
+                }
+
             }
+            
+            array_push($verColeccionPalabras, strtoupper($palNueva));
+            
             print_r($verColeccionPalabras);
+
     }
 } while ($opcion < 8 && $opcion >= 1);
