@@ -416,10 +416,10 @@ do {
         case 3:
 
             $cantPartidas = count($verColeccionPartidas);
-            $var = 0;
+            $var = 1;
 
             echo "\n" . "ingrese un numero de partida para visualizar:" . "\n";
-            $numPartidaVer = solicitarNumeroEntre($var, $cantPartidas);
+            $numPartidaVer = solicitarNumeroEntre($var, $cantPartidas-1);
 
             datosPartida($verColeccionPartidas, $numPartidaVer);
 
@@ -490,8 +490,8 @@ do {
             }
             
             $palabrasFinal=$verColeccionPalabras;
-            //$palabrasFinal=agregarPalabra($palabrasFinal, $palNueva);
-            //print_r($palabrasFinal);
+            $verColeccionPalabras=agregarPalabra($palabrasFinal, $palNueva);
+            //print_r($verColeccionPalabras);
             
             //array_push($verColeccionPalabras, strtoupper($palNueva));
             
