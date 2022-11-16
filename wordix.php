@@ -329,6 +329,47 @@ function esIntentoGanado($estructuraPalabraIntento)
 }
 
 /**
+ * Calcula los puntos de las letras vocales
+ * @param string $letraVocal 
+ * @return int
+ */
+function esVocal($letraVocal)
+{
+    $puntoVocal = 0;
+    $vocales = ["A", "E", "I", "O", "U"];
+    for ($i = 0; $i < count($vocales); $i++) {
+        if ($letraVocal == $vocales[$i]) {
+            $puntoVocal = $puntoVocal + 1;
+        }
+    };
+    return ($puntoVocal);
+}
+/**
+ * Calcula los puntos de las consonantes anteriores y posteriores a M
+ * @param string $letraConsonante
+ * @return int
+ */
+function esConsonante($letraConsonante)
+{
+    $puntoConsonante = 0;
+    $consonantes = [
+        "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N",
+        "Ñ", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"
+    ];
+    for ($i = 0; $i < count($consonantes); $i++) {
+        if ($letraConsonante == $consonantes[$i]) {
+            $puntoConsonante = $puntoConsonante + 2;
+            if ($i <= 9) {
+                $puntoConsonante = $puntoConsonante + 2;
+            } elseif ($i > 9) {
+                $puntoConsonante = $puntoConsonante + 3;
+            }
+        }
+    };
+    return ($puntoConsonante);
+}
+
+/**
  * Calcula el puntaje segun los intentos y segun las letras de la palabra acertada 
  * @param int $intento
  * @param array $arregloLetras
@@ -339,48 +380,8 @@ function obtenerPuntajeWordix($intento, $arregloLetras)
     $a = 0;
     $acumPtsCons = 0;
     $acumPtsVocal = 0;
-
-    /**
-     * Calcula los puntos de las letras vocales
-     * @param string $letraVocal 
-     * @return int
-     */
-    function esVocal($letraVocal)
-    {
-        $puntoVocal = 0;
-        $vocales = ["A", "E", "I", "O", "U"];
-        for ($i = 0; $i < count($vocales); $i++) {
-            if ($letraVocal == $vocales[$i]) {
-                $puntoVocal = $puntoVocal + 1;
-            }
-        };
-        return ($puntoVocal);
-    }
-    /**
-     * Calcula los puntos de las consonantes anteriores y posteriores a M
-     * @param string $letraConsonante
-     * @return int
-     */
-    function esConsonante($letraConsonante)
-    {
-        $puntoConsonante = 0;
-        $consonantes = [
-            "B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N",
-            "Ñ", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"
-        ];
-        for ($i = 0; $i < count($consonantes); $i++) {
-            if ($letraConsonante == $consonantes[$i]) {
-                $puntoConsonante = $puntoConsonante + 2;
-                if ($i <= 9) {
-                    $puntoConsonante = $puntoConsonante + 2;
-                } elseif ($i > 9) {
-                    $puntoConsonante = $puntoConsonante + 3;
-                }
-            }
-        };
-        return ($puntoConsonante);
-    }
-
+    $ptsVocal = 0;
+    $ptsCons = 0;
     while ($a <= 4) {
         $letras = $arregloLetras[$a]["letra"];
         $a++;
@@ -461,4 +462,3 @@ function jugarWordix($palabraWordix, $nombreUsuario)
 
     return $partida;
 }
-
