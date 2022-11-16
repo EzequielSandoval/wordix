@@ -7,7 +7,7 @@ include_once("wordix.php");
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
 
-/* Menard, Andres. FAI-4309. TUDW. andresmenard.arg@gmail.com. @userAndres99 */
+/* Menard, Andres. FAI-4309. TUDW. andres.menard@est.fi.uncoma.edu.ar. @userAndres99 */
 /* Sandoval, Ezequiel. FAI-3211. TUDW. ezequiel.sandoval@est.fi.uncoma.edu.ar. @EzequielSandoval */
 /* Calderon Exequiel. FAI-4432. TUDW . mario.calderon@est.fi.uncoma.edu.ar. @CalderonExe22 */
 /* Lucero, Santiago. FAI-4129. TUDW. santiago.lucero@est,fi.uncoma.edu.ar. @santylucero */ 
