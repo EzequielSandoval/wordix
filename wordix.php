@@ -441,7 +441,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
         $ganoElIntento = esIntentoGanado($arregloDeIntentosWordix[$indiceIntento]); //true or false
         $nroIntento++;
     } while ($nroIntento <= CANT_INTENTOS && !$ganoElIntento);
-    print_r($arregloDeIntentosWordix);
+    //print_r($arregloDeIntentosWordix);
     if ($ganoElIntento) {
         $nroIntento--; // n° de intento en el q se gano
         $puntaje = obtenerPuntajeWordix($nroIntento, $arregloDeIntentosWordix[$indiceIntento]);                                //0

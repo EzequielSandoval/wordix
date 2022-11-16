@@ -6,7 +6,8 @@ include_once("wordix.php");
 /**************************************/
 
 /* Apellido, Nombre. Legajo. Carrera. mail. Usuario Github */
-/* ... COMPLETAR ... */
+
+/* Menard, Andres. FAI-4309. TUDW. andresmenard.arg@gmail.com. userAndres99 */
 
 
 
@@ -304,9 +305,6 @@ function agregarPartida($colecPartida, $partidaNueva)
 }
 
 
-/* ... COMPLETAR ... */
-
-
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -324,9 +322,6 @@ function agregarPartida($colecPartida, $partidaNueva)
 
 
 //Proceso:
-
-
-
 //$partida = jugarWordix("MELON", strtolower("MaJo"));
 //print_r($partida);
 //imprimirResultado($partida);
@@ -369,6 +364,7 @@ do {
             $partida = jugarWordix($verColeccionPalabras[$numeroPalabra - 1], strtolower($jugadorWordix));
 
             //(POR SI QUIEREN VER EL AGREGADO DE PARTIDAS)
+
             //echo "*********ANTES DE AGREGAR LA PARTIDA********";
             //print_r($verColeccionPartidas);
 
@@ -434,11 +430,11 @@ do {
             for($i=0; $i < count($verColeccionPartidas); $i++){
                 if(($llave ==-1) && ($verColeccionPartidas[$i]["jugador"]==$jugadorWordix)){
                     
-                    echo "\n"."partida WORDIX ". $i+1 . "  palabra: " .$verColeccionPartidas[$i]["palabraWordix"]."\n";
-                    echo "jugador: ".$verColeccionPartidas[$i]["jugador"]."\n";
-                    echo "puntaje: ".$verColeccionPartidas[$i]["puntaje"]."\n";
-                    echo "intentos: ".trim($verColeccionPartidas[$i]["intentos"])." intentos "."\n \n";
-                    echo "el jugador ".trim($verColeccionPartidas[$i]["jugador"])." no gano "."\n";
+                    // echo "\n"."partida WORDIX ". $i+1 . "  palabra: " .$verColeccionPartidas[$i]["palabraWordix"]."\n";
+                    // echo "jugador: ".$verColeccionPartidas[$i]["jugador"]."\n";
+                    //echo "puntaje: ".$verColeccionPartidas[$i]["puntaje"]."\n";
+                    // echo "intentos: ".trim($verColeccionPartidas[$i]["intentos"])." intentos "."\n \n";
+                    echo "\n el jugador ".trim($verColeccionPartidas[$i]["jugador"])." no gano "."\n";
                     $llave=999999;
 
                 }
