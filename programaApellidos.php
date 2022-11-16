@@ -9,6 +9,7 @@ include_once("wordix.php");
 
 /* Menard, Andres. FAI-4309. TUDW. andresmenard.arg@gmail.com. @userAndres99 */
 /* Sandoval, Ezequiel. FAI-3211. TUDW. ezequiel.sandoval@est.fi.uncoma.edu.ar. @EzequielSandoval */
+/* Calderon Exequiel. FAI-4432. TUDW . mario.calderon@est.fi.uncoma.edu.ar. @CalderonExe22 */
 
 
 /**************************************/
@@ -341,6 +342,11 @@ $nombreEstadis = "";
 //Proceso:
 do {
     $opcion = seleccionarOpcion();
+    
+    //La sentencia switch es similar a una serie de sentencias IF en la misma expresión.
+    //En muchas ocasiones, es posible que se quiera comparar la misma variable (o expresión)
+    //con muchos valores diferentes, y ejecutar una parte de código distinta dependiendo de a que valor es igual.
+
     switch ($opcion) {
         case 1:
             # 1) jugar wordix con palabra elegida
