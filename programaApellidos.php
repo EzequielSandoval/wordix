@@ -407,33 +407,36 @@ do {
             datosPartida($verColeccionPartidas, $numPartidaVer - 1);
             break;
         case 4:
-            #4) Mostrar primer partida ganadora
-            $jugadorWordix = solicitarJugador();
-            $llave = primeraVictoria($jugadorWordix, $verColeccionPartidas);
-            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
-                if (($llave == -1) && ($verColeccionPartidas[$i]["jugador"] == $jugadorWordix)) {
-                    // echo "\n"."partida WORDIX ". $i+1 . "  palabra: " .$verColeccionPartidas[$i]["palabraWordix"]."\n";
-                    // echo "jugador: ".$verColeccionPartidas[$i]["jugador"]."\n";
-                    //echo "puntaje: ".$verColeccionPartidas[$i]["puntaje"]."\n";
-                    // echo "intentos: ".trim($verColeccionPartidas[$i]["intentos"])." intentos "."\n \n";
-                    echo "\n el jugador " . trim($verColeccionPartidas[$i]["jugador"]) . " no gano " . "\n";
-                    $llave = 999999;
+        
+              $jugadorWordix = solicitarJugador();
+
+            $llave=primeraVictoria($jugadorWordix, $verColeccionPartidas);
+
+            for($i=0; $i < count($verColeccionPartidas); $i++){
+                if(($llave ==-1) && ($verColeccionPartidas[$i]["jugador"]==$jugadorWordix)){
+                    
+                    echo "\n"."el jugador ".trim($verColeccionPartidas[$i]["jugador"])." no gano "."\n";
+                    $llave=999999;
+
                 }
             }
-            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
-                if (($llave == -1) && ($verColeccionPartidas[$i]["jugador"] != $jugadorWordix)) {
-                    echo "\n" . "NO EXISTE JUGADOR" . "\n";
-                    $llave = 9999999;
+
+            for($i=0; $i < count($verColeccionPartidas); $i++){  
+                if(($llave == -1) && ($verColeccionPartidas[$i]["jugador"] != $jugadorWordix)){
+
+                    echo "\n"."NO EXISTE JUGADOR"."\n";
+                    $llave=9999999;
                 }
             }
-            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
-                if ($llave == $i) {
-                    echo "\n" . "partida WORDIX " . $i + 1 . " palabra:" . $verColeccionPartidas[$i]["palabraWordix"] . "\n";
-                    echo "jugador: " . $verColeccionPartidas[$i]["jugador"] . "\n";;
-                    echo "puntaje: " . $verColeccionPartidas[$i]["puntaje"] . "\n";;
-                    echo "intentos: adivino la palabra en " . trim($verColeccionPartidas[$i]["intentos"]) . " intentos " . "\n";;
+
+            for($i=0; $i < count($verColeccionPartidas); $i++){ 
+                if($llave==$i){  
+
+                    datosPartida($verColeccionPartidas, $llave);
                 }
             }
+            
+            
             break;
         case 5:
             #5) Mostrar estadisticas jugador
