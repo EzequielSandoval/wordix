@@ -86,18 +86,19 @@ function seleccionarOpcion()
     //int $numMin
     //array $lasOpciones
 
-    $lasOpciones[1] = "1)Jugar wordix con una palabra elegida.";
-    $lasOpciones[2] = "2)Jugar al wordix con una palabra aleatoria.";
-    $lasOpciones[3] = "3)Mostrar una partida.";
-    $lasOpciones[4] = "4)Mostrar la primera partida ganadora.";
-    $lasOpciones[5] = "5)Mostrar resumen de jugador.";
-    $lasOpciones[6] = "6)mostrar listado de partidas ordenadas por jugador y por palabra.";
-    $lasOpciones[7] = "7)agregar una palabra de 5 letras a wordix.";
-    $lasOpciones[8] = "8)Salir.";
+    $lasOpciones[0] = "1)Jugar wordix con una palabra elegida.";
+    $lasOpciones[1] = "2)Jugar al wordix con una palabra aleatoria.";
+    $lasOpciones[2] = "3)Mostrar una partida.";
+    $lasOpciones[3] = "4)Mostrar la primera partida ganadora.";
+    $lasOpciones[4] = "5)Mostrar resumen de jugador.";
+    $lasOpciones[5] = "6)mostrar listado de partidas ordenadas por jugador y por palabra.";
+    $lasOpciones[6] = "7)agregar una palabra de 5 letras a wordix.";
+    $lasOpciones[7] = "8)Salir.";
 
     $numMax = count($lasOpciones);
     $numMin = 1;
 
+    echo "\n" . $lasOpciones[0] . "\n";
     echo "\n" . $lasOpciones[1] . "\n";
     echo "\n" . $lasOpciones[2] . "\n";
     echo "\n" . $lasOpciones[3] . "\n";
@@ -105,7 +106,6 @@ function seleccionarOpcion()
     echo "\n" . $lasOpciones[5] . "\n";
     echo "\n" . $lasOpciones[6] . "\n";
     echo "\n" . $lasOpciones[7] . "\n";
-    echo "\n" . $lasOpciones[8] . "\n";
     echo "\n" . "ingrese una opcion del menu: ";
 
     $opcionElegida = solicitarNumeroEntre($numMin, $numMax);
