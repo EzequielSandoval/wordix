@@ -321,6 +321,7 @@ function agregarPartida($colecPartida, $partidaNueva)
 //Inicialización de variables:
 $verColeccionPartidas = cargarPartidas();
 $verColeccionPalabras = cargarColeccionPalabras();
+$resumenJugadores = cargarResumenJugador();
 $opcion = 0;
 $cantidadPalabras = 0;
 $numeroPalabra = 0;
@@ -445,19 +446,19 @@ do {
             
             break;
         case 5:
-            #5) Mostrar estadisticas jugador
+             #5) Mostrar estadisticas jugador
             $nombreEstadis = solicitarJugador();
             $resultado = 0;
-            for ($l = 0; $l < count($verColeccionPartidas); $l++) {
-                if ($nombreEstadis == $verColeccionPartidas[$l]["jugador"]) {
+            for ($l = 0; $l < count($resumenJugadores); $l++) {
+                if ($nombreEstadis == $resumenJugadores[$l]["jugador"]) {
                     $resultado = 1;
                 }
             }
             while (($resultado == 0)) {
                 echo "el jugador ingresado no a jugado ninguna partida \n";
                 $nombreEstadis = solicitarJugador();
-                for ($l = 0; $l < count($verColeccionPartidas); $l++) {
-                    if ($verColeccionPartidas[$l]["jugador"] == $nombreEstadis) {
+                for ($l = 0; $l < count($resumenJugadores); $l++) {
+                    if ($resumenJugadores[$l]["jugador"] == $nombreEstadis) {
                         $resultado = 1;
                     }
                 }
