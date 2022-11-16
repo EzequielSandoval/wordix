@@ -184,12 +184,13 @@ function primeraVictoria($nombJugador, $partidasGanadas)
 //--------------------PUNTO 9 EXPLICACION 3 --------------------
 /**
  * muestra el resumen de un jugador especifico
+ * @param array $arrayJugadores
  * @param string $nombreJugador 
  */
-function resumenUnJugador($nombreJugador)
+function resumenUnJugador($arrayJugadores,$nombreJugador)
 {
-    // array $arrayJugadores
-    $arrayJugadores = cargarResumenJugador();
+    
+   
 
     for ($i = 0; $i < count($arrayJugadores); $i++) {
         if ($arrayJugadores[$i]["jugador"] == $nombreJugador) {
@@ -303,6 +304,53 @@ function agregarPartida($colecPartida, $partidaNueva)
     $colecPartida[$totalPartidas] = $partidaNueva;
     return $colecPartida;
 }
+//--------------------PODRIA SERVIR UN POQUIS --------------------
+/**
+ *@param array $colePartidas
+ *@param string $nomJugador
+ *@return array
+ */
+function devuelveResumen($colePartidas,$nomJugador){
+
+    $total=count($colePartidas);
+    $resumenJugador = ["jugador" => "", "partidas" => 0, "puntaje" => 0, "victorias" => 0, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 0];
+
+
+    for ($i=0;$i<$total;$i++){
+
+        if($colePartidas[$i]["jugador"]==$nomJugador){
+
+            $resumenJugador["jugador"]=$nomJugador;
+
+            $resumenJugador["partidas"]=$resumenJugador["partidas"]+1;
+
+            $resumenJugador["puntaje"]=$resumenJugador["puntaje"]+$colePartidas[$i]["puntaje"];
+
+            if($colePartidas[$i]["puntaje"]!=0){
+
+            $resumenJugador["victorias"]=$resumenJugador["victorias"]+ 1;
+            }else{
+            $resumenJugador["victorias"]=$resumenJugador["victorias"]+0;
+            }
+
+            if($colePartidas[$i]["intentos"]==1){
+            $resumenJugador["intento1"]=$resumenJugador["intento1"]+1;
+            }elseif($colePartidas[$i]["intentos"]==2){
+            $resumenJugador["intento2"]=$resumenJugador["intento2"]+1;
+            }elseif($colePartidas[$i]["intentos"]==3){
+            $resumenJugador["intento3"]=$resumenJugador["intento3"]+1;
+            }elseif($colePartidas[$i]["intentos"]==4){
+            $resumenJugador["intento4"]=$resumenJugador["intento4"]+1; 
+            }elseif($colePartidas[$i]["intentos"]==5){
+            $resumenJugador["intento5"]=$resumenJugador["intento5"]+1;
+            }elseif($colePartidas[$i]["intentos"]==6){
+            $resumenJugador["intento6"]=$resumenJugador["intento6"]+1;
+            }
+
+        }
+    }
+    return $resumenJugador;
+}
 
 
 
@@ -377,6 +425,8 @@ do {
             $verColeccionPartidas = agregarPartida($verColeccionPartidas, $partida);
             //echo "*********DESPUES DE AGREGAR LA PARTIDA********";
             //print_r($verColeccionPartidas);
+            $resumenPartida=devuelveResumen($verColeccionPartidas,$jugadorWordix);
+            $resumenJugadores= agregarPartida($resumenJugadores,$resumenPartida);
             break;
         case 2:
             #2) jugar wordix con palabra aleatoria
@@ -404,6 +454,8 @@ do {
             $verColeccionPartidas = agregarPartida($verColeccionPartidas, $partida);
             //echo "*********DESPUES DE AGREGAR LA PARTIDA********";
             //print_r($verColeccionPartidas);
+            $resumenPartida=devuelveResumen($verColeccionPartidas,$jugadorWordix);
+            $resumenJugadores= agregarPartida($resumenJugadores,$resumenPartida);
             break;
         case 3:
             #3) Mostrar una partida
@@ -463,7 +515,7 @@ do {
                     }
                 }
             }
-            resumenUnJugador($nombreEstadis);
+            resumenUnJugador($resumenJugadores,$nombreEstadis);
             break;
         case 6:
             #6) Mostrar el listado de partidas ordenadas por jugador y por palabra
