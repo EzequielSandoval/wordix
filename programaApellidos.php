@@ -312,10 +312,10 @@ function agregarPartida($colecPartida, $partidaNueva)
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
-//Declaración de variables:
+//DECLARACION DE VARIABLES:
 
-// int $opcion,$cantidadPalabras,$numeroPalabra,$i,$sumaPalaAleatoria
-// string $jugadorWordix
+// int $opcion,$cantidadPalabras,$numeroPalabra,$i,$sumaPalaAleatoria,$numeroPalaAleatoria,$cantPartidas,$var,$numPartidaVer,$llave,$resultado
+// string $jugadorWordix,$palNueva,$nombreEstadis
 // array $verColeccionPartidas,$verColeccionPalabras,$partida
 // boolean $esPalabraUsada
 
@@ -434,10 +434,10 @@ do {
             for($i=0; $i < count($verColeccionPartidas); $i++){
                 if(($llave ==-1) && ($verColeccionPartidas[$i]["jugador"]==$jugadorWordix)){
                     
-                    echo "\n"."partida WORDIX: ".$i. " palabra: ".$verColeccionPartidas[$i]["palabraWordix"]."\n";
+                    echo "\n"."partida WORDIX ". $i+1 . "  palabra: " .$verColeccionPartidas[$i]["palabraWordix"]."\n";
                     echo "jugador: ".$verColeccionPartidas[$i]["jugador"]."\n";
                     echo "puntaje: ".$verColeccionPartidas[$i]["puntaje"]."\n";
-                    echo "intentos: ".trim($verColeccionPartidas[$i]["intentos"])." intentos "."\n";
+                    echo "intentos: ".trim($verColeccionPartidas[$i]["intentos"])." intentos "."\n \n";
                     echo "el jugador ".trim($verColeccionPartidas[$i]["jugador"])." no gano "."\n";
                     $llave=999999;
 
@@ -455,7 +455,7 @@ do {
             for($i=0; $i < count($verColeccionPartidas); $i++){ 
                 if($llave==$i){  
 
-                    echo "\n"."partida WORDIX: ".$i.trim(" palabra:").$verColeccionPartidas[$i]["palabraWordix"]."\n";
+                    echo "\n"."partida WORDIX " .$i+1 . " palabra:".$verColeccionPartidas[$i]["palabraWordix"]."\n";
                     echo "jugador: ".$verColeccionPartidas[$i]["jugador"]."\n";;
                     echo "puntaje: ".$verColeccionPartidas[$i]["puntaje"]."\n";;
                     echo "intentos: adivino la palabra en ".trim($verColeccionPartidas[$i]["intentos"])." intentos "."\n";;
@@ -524,4 +524,4 @@ do {
             break;
 
     }
-} while ($opcion <= 8 && $opcion >= 1);
+} while ($opcion < 8 && $opcion >= 1);
