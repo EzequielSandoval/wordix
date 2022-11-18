@@ -377,12 +377,12 @@ function esConsonante($letraConsonante)
  */
 function obtenerPuntajeWordix($intento, $arregloLetras)
 {
-    
+
     $acumPtsCons = 0;
     $acumPtsVocal = 0;
     $ptsVocal = 0;
     $ptsCons = 0;
-    for ($a=0; $a <= 4 ; $a++) { 
+    for ($a = 0; $a <= 4; $a++) {
         $letras = $arregloLetras[$a]["letra"];
         $ptsVocal = esVocal($letras);
         $ptsCons = esConsonante($letras);
@@ -390,7 +390,7 @@ function obtenerPuntajeWordix($intento, $arregloLetras)
         $acumPtsCons = $acumPtsCons + $ptsCons;
     }
 
-    
+
     // 3
     switch ($intento) {
         case 1:
@@ -447,7 +447,7 @@ function jugarWordix($palabraWordix, $nombreUsuario)
     if ($ganoElIntento) {
         $nroIntento--; // n° de intento en el q se gano
         $puntaje = obtenerPuntajeWordix($nroIntento, $arregloDeIntentosWordix[$indiceIntento]);                                //0
-        echo "\nAdivinó la palabra Wordix ($palabraIntento) en el intento " . $nroIntento . "!: " . $nombreUsuario . " Obtuvo $puntaje puntos!";
+        echo "\nAdivinó la palabra Wordix ($palabraIntento) en el intento " . $nroIntento . "!: " . $nombreUsuario . escribirVerde(" Obtuvo $puntaje puntos!");
     } else {
         $nroIntento = 0; //reset intento
         $puntaje = 0;
