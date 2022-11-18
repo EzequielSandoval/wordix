@@ -202,35 +202,102 @@ function primeraVictoria($nombJugador, $partidasGanadas)
 
 
 //--------------------PUNTO 9 EXPLICACION 3 --------------------
+// /**
+//  * muestra el resumen de un jugador especifico
+//  * @param array $arrayJugadores
+//  * @param string $nombreJugador 
+//  */
+// function resumenUnJugador($arrayJugadores, $nombreJugador)
+// {
+
+//     for ($i = 0; $i < count($arrayJugadores); $i++) {
+//         if ($arrayJugadores[$i]["jugador"] == $nombreJugador) {
+//             echo "*******************************";
+//             echo "\nJugador: " . $arrayJugadores[$i]["jugador"];
+//             echo "\nPartidas: " . $arrayJugadores[$i]["partidas"];
+//             echo "\nPuntaje Total: " . $arrayJugadores[$i]["puntaje"];
+//             echo "\nVictorias: " . $arrayJugadores[$i]["victorias"];
+//             echo "\nPorcentaje de victorias: " . $arrayJugadores[$i]["victorias"] * 100 / $arrayJugadores[$i]["partidas"] . "%";
+//             echo "\nAdivinadas: \n";
+//             echo "  Intento 1: " . $arrayJugadores[$i]["intento1"] . "\n";
+//             echo "  Intento 2: " . $arrayJugadores[$i]["intento2"] . "\n";
+//             echo "  Intento 3: " . $arrayJugadores[$i]["intento3"] . "\n";
+//             echo "  Intento 4: " . $arrayJugadores[$i]["intento4"] . "\n";
+//             echo "  Intento 5: " . $arrayJugadores[$i]["intento5"] . "\n";
+//             echo "  Intento 6: " . $arrayJugadores[$i]["intento6"] . "\n";
+//             echo "*******************************";
+//         }
+//     }
+// }
 /**
- * muestra el resumen de un jugador especifico
- * @param array $arrayJugadores
- * @param string $nombreJugador 
+ *(dado un nombre y una coleccion de partias, realiza un resumen en base al nombre y lo muestra)
+ *@param array $colePartidas
+ *@param string $nomJugador
  */
-function resumenUnJugador($arrayJugadores, $nombreJugador)
+function devuelveResumen($colePartidas, $nomJugador)
 {
+    //array $resumen
+    $resumen =
+        [
+            "jugador" => "",
+            "partidas" => 0,
+            "puntaje" => 0,
+            "victorias" => 0,
+            "intento1" => 0,
+            "intento2" => 0,
+            "intento3" => 0,
+            "intento4" => 0,
+            "intento5" => 0,
+            "intento6" => 0
+        ];
 
-
-
-    for ($i = 0; $i < count($arrayJugadores); $i++) {
-        if ($arrayJugadores[$i]["jugador"] == $nombreJugador) {
-            echo "*******************************";
-            echo "\nJugador: " . $arrayJugadores[$i]["jugador"];
-            echo "\nPartidas: " . $arrayJugadores[$i]["partidas"];
-            echo "\nPuntaje Total: " . $arrayJugadores[$i]["puntaje"];
-            echo "\nVictorias: " . $arrayJugadores[$i]["victorias"];
-            echo "\nPorcentaje de victorias: " . $arrayJugadores[$i]["victorias"] * 100 / $arrayJugadores[$i]["partidas"] . "%";
-            echo "\nAdivinadas: \n";
-            echo "  Intento 1: " . $arrayJugadores[$i]["intento1"] . "\n";
-            echo "  Intento 2: " . $arrayJugadores[$i]["intento2"] . "\n";
-            echo "  Intento 3: " . $arrayJugadores[$i]["intento3"] . "\n";
-            echo "  Intento 4: " . $arrayJugadores[$i]["intento4"] . "\n";
-            echo "  Intento 5: " . $arrayJugadores[$i]["intento5"] . "\n";
-            echo "  Intento 6: " . $arrayJugadores[$i]["intento6"] . "\n";
-            echo "*******************************";
+    for ($i = 0; $i < count($colePartidas); $i++) {
+        if ($colePartidas[$i]["jugador"] == $nomJugador) {
+            $resumen["jugador"]  = $nomJugador;
+            $resumen["partidas"] = $resumen["partidas"] + 1;
+            $resumen["puntaje"]  = $resumen["puntaje"]  + $colePartidas[$i]["puntaje"];
+            if ($colePartidas[$i]["puntaje"] != 0) {
+                $resumen["victorias"] = $resumen["victorias"] + 1;
+            }
+            switch ($colePartidas[$i]["intentos"]) {
+                case 1:
+                    $resumen["intento1"] = $resumen["intento1"] + 1;
+                    break;
+                case 2:
+                    $resumen["intento2"] = $resumen["intento2"] + 1;
+                    break;
+                case 3:
+                    $resumen["intento3"] = $resumen["intento3"] + 1;
+                    break;
+                case 4:
+                    $resumen["intento4"] = $resumen["intento4"] + 1;
+                    break;
+                case 5:
+                    $resumen["intento5"] = $resumen["intento5"] + 1;
+                    break;
+                case 6:
+                    $resumen["intento6"] = $resumen["intento6"] + 1;
+                    break;
+            }
         }
     }
+    // return $resumen  (podriamos retornar el resumen tambien)
+    echo "\n*******************************";
+    echo "\nJugador: " . $resumen["jugador"];
+    echo "\nPartidas: " . $resumen["partidas"];
+    echo "\nPuntaje Total: " . $resumen["puntaje"];
+    echo "\nVictorias: " . $resumen["victorias"];
+    echo "\nPorcentaje de victorias: " . $resumen["victorias"] * 100 / $resumen["partidas"] . "%";
+    echo "\nAdivinadas: \n";
+    echo "  Intento 1: " . $resumen["intento1"] . "\n";
+    echo "  Intento 2: " . $resumen["intento2"] . "\n";
+    echo "  Intento 3: " . $resumen["intento3"] . "\n";
+    echo "  Intento 4: " . $resumen["intento4"] . "\n";
+    echo "  Intento 5: " . $resumen["intento5"] . "\n";
+    echo "  Intento 6: " . $resumen["intento6"] . "\n";
+    echo "*******************************";
 }
+
 /** --------------------- PUNTO 10 DE LA EXPLICACION 3 ---------------------
  * solicita al usuario el nombre de un jugador y lo retorna en minusculas                                                                          
  * @return string
@@ -309,77 +376,6 @@ function agregarPartida($colecPartida, $partidaNueva)
     $colecPartida[$totalPartidas] = $partidaNueva;
     return $colecPartida;
 }
-//--------------------PODRIA SERVIR UN POQUIS --------------------
-/**
- *(dado un nombre y una coleccion de partias, realiza un resumen en base al nombre y lo muestra)
- *@param array $colePartidas
- *@param string $nomJugador
- */
-function devuelveResumen($colePartidas, $nomJugador)
-{
-    //array $resumen
-
-    $resumen = ["jugador" => "", "partidas" => 0, "puntaje" => 0, "victorias" => 0, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 0];
-
-    for ($i = 0; $i < count($colePartidas); $i++) {
-
-        if ($colePartidas[$i]["jugador"] == $nomJugador) {
-            $resumen["jugador"] = $nomJugador;
-
-            $resumen["partidas"] = $resumen["partidas"] + 1;
-
-            $resumen["puntaje"] = $resumen["puntaje"] + $colePartidas[$i]["puntaje"];
-
-            if ($colePartidas[$i]["puntaje"] != 0) {
-
-                $resumen["victorias"] = $resumen["victorias"] + 1;
-            }
-            switch ($colePartidas[$i]["intentos"]) {
-                case 1:
-                    $resumen["intento1"] = $resumen["intento1"] + 1;
-
-                    break;
-                case 2:
-                    $resumen["intento2"] = $resumen["intento2"] + 1;
-
-                    break;
-                case 3:
-                    $resumen["intento3"] = $resumen["intento3"] + 1;
-
-                    break;
-                case 4:
-                    $resumen["intento4"] = $resumen["intento4"] + 1;
-
-                    break;
-                case 5:
-                    $resumen["intento5"] = $resumen["intento5"] + 1;
-
-                    break;
-                case 6:
-                    $resumen["intento6"] = $resumen["intento6"] + 1;
-
-                    break;
-            }
-        }
-    }
-    // return $resumen  (podriamos retornar el resumen tambien)
-    echo "\n*******************************";
-    echo "\nJugador: " . $resumen["jugador"];
-    echo "\nPartidas: " . $resumen["partidas"];
-    echo "\nPuntaje Total: " . $resumen["puntaje"];
-    echo "\nVictorias: " . $resumen["victorias"];
-    echo "\nPorcentaje de victorias: " . $resumen["victorias"] * 100 / $resumen["partidas"] . "%";
-    echo "\nAdivinadas: \n";
-    echo "  Intento 1: " . $resumen["intento1"] . "\n";
-    echo "  Intento 2: " . $resumen["intento2"] . "\n";
-    echo "  Intento 3: " . $resumen["intento3"] . "\n";
-    echo "  Intento 4: " . $resumen["intento4"] . "\n";
-    echo "  Intento 5: " . $resumen["intento5"] . "\n";
-    echo "  Intento 6: " . $resumen["intento6"] . "\n";
-    echo "*******************************";
-}
-
-
 
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
@@ -465,7 +461,6 @@ do {
                         $esPalabraUsada = false;
                     }
                     if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada) {
-
                         $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
                         $i = 0;
                     }
@@ -490,35 +485,25 @@ do {
             datosPartida($verColeccionPartidas, $numPartidaVer - 1);
             break;
         case 4:
-
             $jugadorWordix = solicitarJugador();
-
             $llave = primeraVictoria($jugadorWordix, $verColeccionPartidas);
-
             for ($i = 0; $i < count($verColeccionPartidas); $i++) {
                 if (($llave == -1) && ($verColeccionPartidas[$i]["jugador"] == $jugadorWordix)) {
-
                     echo "\n" . "el jugador " . trim($verColeccionPartidas[$i]["jugador"]) . " no gano " . "\n";
                     $llave = 999999;
                 }
             }
-
             for ($i = 0; $i < count($verColeccionPartidas); $i++) {
                 if (($llave == -1) && ($verColeccionPartidas[$i]["jugador"] != $jugadorWordix)) {
-
                     echo "\n" . "NO EXISTE JUGADOR" . "\n";
                     $llave = 9999999;
                 }
             }
-
             for ($i = 0; $i < count($verColeccionPartidas); $i++) {
                 if ($llave == $i) {
-
                     datosPartida($verColeccionPartidas, $llave);
                 }
             }
-
-
             break;
         case 5:
             #5) Mostrar estadisticas jugador
@@ -539,8 +524,6 @@ do {
                 }
             }
             devuelveResumen($verColeccionPartidas, $nombreEstadis);
-
-
             break;
         case 6:
             #6) Mostrar el listado de partidas ordenadas por jugador y por palabra
