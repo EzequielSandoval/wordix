@@ -377,19 +377,20 @@ function esConsonante($letraConsonante)
  */
 function obtenerPuntajeWordix($intento, $arregloLetras)
 {
-    $a = 0;
+    
     $acumPtsCons = 0;
     $acumPtsVocal = 0;
     $ptsVocal = 0;
     $ptsCons = 0;
-    while ($a <= 4) {
+    for ($a=0; $a <= 4 ; $a++) { 
         $letras = $arregloLetras[$a]["letra"];
-        $a++;
         $ptsVocal = esVocal($letras);
         $ptsCons = esConsonante($letras);
         $acumPtsVocal = $acumPtsVocal + $ptsVocal;
         $acumPtsCons = $acumPtsCons + $ptsCons;
     }
+
+    
     // 3
     switch ($intento) {
         case 1:
