@@ -91,7 +91,6 @@ function cargarPartidas()
 
     array_push($coleccion, $pa1, $pa2, $pa3, $pa4, $pa5, $pa6, $pa7, $pa8, $pa9, $pa10, $pa11, $pa12);
     return $coleccion;
-    
 }
 
 //-------------------- PUNTO 3 DE LA EXPLICACION 3 --------------------
@@ -191,12 +190,12 @@ function primeraVictoria($nombJugador, $partidasGanadas)
         $f = $f + 1;
     }
 
-    $n=0;
-    while( $n < $f && ($partidasGanadas[$n]["jugador"] != $nombJugador || $partidasGanadas[$n]["puntaje"]==0)){
-        $n=$n+1;               
+    $n = 0;
+    while ($n < $f && ($partidasGanadas[$n]["jugador"] != $nombJugador || $partidasGanadas[$n]["puntaje"] == 0)) {
+        $n = $n + 1;
     }
-    if($n==$f){
-        $n=-1;
+    if ($n == $f) {
+        $n = -1;
     }
     return $n;
 }
@@ -277,14 +276,13 @@ function ordenarColeccionPartidas($coleccPartidas)
     {
         if ($a["jugador"] == $b["jugador"]) {
 
-           if ($a["palabraWordix"] == $b["palabraWordix"]) {
+            if ($a["palabraWordix"] == $b["palabraWordix"]) {
                 $orden = 0;
             } elseif ($a["palabraWordix"] < $b["palabraWordix"]) {
                 $orden = -1;
             } else {
                 $orden = 1;
-            } 
-
+            }
         } elseif ($a["jugador"] < $b["jugador"]) {
             $orden = -1;
         } else {
@@ -292,12 +290,10 @@ function ordenarColeccionPartidas($coleccPartidas)
         }
         return $orden;
     }
-    
+
     uasort($coleccPartidas, 'ordenado');
     echo "********** ORDENADO POR NOMBRE (EN CASO DE QUE EL NOMBRE SEA EL MISMO LO ORDENA POR PALABRA) **********\n";
     print_r($coleccPartidas);
-
-    
 }
 //--------------------PODRIA SERVIR UN POQUIS --------------------
 /**
@@ -322,57 +318,57 @@ function agregarPartida($colecPartida, $partidaNueva)
 function devuelveResumen($colePartidas, $nomJugador)
 {
     //array $resumen
-    
-    $resumen= ["jugador" => "", "partidas" => 0, "puntaje" => 0, "victorias" => 0, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 0];
 
-    for ($i = 0; $i < count($colePartidas) ; $i++) {
+    $resumen = ["jugador" => "", "partidas" => 0, "puntaje" => 0, "victorias" => 0, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 0];
+
+    for ($i = 0; $i < count($colePartidas); $i++) {
 
         if ($colePartidas[$i]["jugador"] == $nomJugador) {
-            $resumen["jugador"]=$nomJugador;
-            
-            $resumen["partidas"]=$resumen["partidas"]+1;
-            
-            $resumen["puntaje"]=$resumen["puntaje"] + $colePartidas[$i]["puntaje"];
-           
+            $resumen["jugador"] = $nomJugador;
+
+            $resumen["partidas"] = $resumen["partidas"] + 1;
+
+            $resumen["puntaje"] = $resumen["puntaje"] + $colePartidas[$i]["puntaje"];
+
             if ($colePartidas[$i]["puntaje"] != 0) {
 
-                $resumen["victorias"]=$resumen["victorias"] + 1;
-            } 
+                $resumen["victorias"] = $resumen["victorias"] + 1;
+            }
             switch ($colePartidas[$i]["intentos"]) {
                 case 1:
-                    $resumen["intento1"]= $resumen["intento1"] + 1;
-                    
+                    $resumen["intento1"] = $resumen["intento1"] + 1;
+
                     break;
                 case 2:
-                    $resumen["intento2"]= $resumen["intento2"] + 1;
-                    
+                    $resumen["intento2"] = $resumen["intento2"] + 1;
+
                     break;
                 case 3:
-                    $resumen["intento3"]= $resumen["intento3"] + 1;
-                    
+                    $resumen["intento3"] = $resumen["intento3"] + 1;
+
                     break;
                 case 4:
-                    $resumen["intento4"]= $resumen["intento4"] + 1;
-                    
+                    $resumen["intento4"] = $resumen["intento4"] + 1;
+
                     break;
                 case 5:
-                    $resumen["intento5"]= $resumen["intento5"] + 1;
-                    
+                    $resumen["intento5"] = $resumen["intento5"] + 1;
+
                     break;
                 case 6:
-                    $resumen["intento6"]= $resumen["intento6"] + 1;
-                    
+                    $resumen["intento6"] = $resumen["intento6"] + 1;
+
                     break;
             }
         }
     }
     // return $resumen  (podriamos retornar el resumen tambien)
     echo "\n*******************************";
-    echo "\nJugador: " .$resumen["jugador"];  
-    echo "\nPartidas: " .$resumen["partidas"];           
-    echo "\nPuntaje Total: " .$resumen["puntaje"];                             
-    echo "\nVictorias: " . $resumenPartidaVict;
-    echo "\nPorcentaje de victorias: " .$resumen["victorias"] * 100 / $resumen["partidas"]. "%"; 
+    echo "\nJugador: " . $resumen["jugador"];
+    echo "\nPartidas: " . $resumen["partidas"];
+    echo "\nPuntaje Total: " . $resumen["puntaje"];
+    echo "\nVictorias: " . $resumen["victorias"];
+    echo "\nPorcentaje de victorias: " . $resumen["victorias"] * 100 / $resumen["partidas"] . "%";
     echo "\nAdivinadas: \n";
     echo "  Intento 1: " . $resumen["intento1"] . "\n";
     echo "  Intento 2: " . $resumen["intento2"] . "\n";
