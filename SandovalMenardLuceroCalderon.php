@@ -176,22 +176,22 @@ function agregarPalabra($colecPalabras, $palabraNueva)
 //--------------------PUNTO 8 EXPLICACION 3 --------------------
 /** 
  * (retorna el índice de la primera partida ganada por un jugador, si no gano ninguna, retorna -1.)
- * @param array $partidasGanadas
+ * @param array $coleccionPartidas
  * @param string $nombJugador
  */
-function primeraVictoria($nombJugador, $partidasGanadas)
+function primeraVictoria($nombJugador, $coleccionPartidas)
 {
     //$f, $n, $indice int
     //
     $indice = 0;
-    $total = $partidasGanadas;
+    $total = $coleccionPartidas;
     $f = 0;
     foreach ($total as $indice) {
         $f = $f + 1;
     }
 
     $n = 0;
-    while ($n < $f && ($partidasGanadas[$n]["jugador"] != $nombJugador || $partidasGanadas[$n]["puntaje"] == 0)) {
+    while ($n < $f && ($coleccionPartidas[$n]["jugador"] != $nombJugador || $coleccionPartidas[$n]["puntaje"] == 0)) {
         $n = $n + 1;
     }
     if ($n == $f) {
@@ -305,7 +305,6 @@ function solicitarJugador()
  */
 function ordenarColeccionPartidas($coleccPartidas)
 {
-
     /**
      * (ordena por nombre del jugador, si el nombre es el mismo lo ordena por palabra )
      *@param array $a
