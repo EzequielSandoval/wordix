@@ -202,33 +202,6 @@ function primeraVictoria($nombJugador, $partidasGanadas)
 
 
 //--------------------PUNTO 9 EXPLICACION 3 --------------------
-// /**
-//  * muestra el resumen de un jugador especifico
-//  * @param array $arrayJugadores
-//  * @param string $nombreJugador 
-//  */
-// function resumenUnJugador($arrayJugadores, $nombreJugador)
-// {
-
-//     for ($i = 0; $i < count($arrayJugadores); $i++) {
-//         if ($arrayJugadores[$i]["jugador"] == $nombreJugador) {
-//             echo "*******************************";
-//             echo "\nJugador: " . $arrayJugadores[$i]["jugador"];
-//             echo "\nPartidas: " . $arrayJugadores[$i]["partidas"];
-//             echo "\nPuntaje Total: " . $arrayJugadores[$i]["puntaje"];
-//             echo "\nVictorias: " . $arrayJugadores[$i]["victorias"];
-//             echo "\nPorcentaje de victorias: " . $arrayJugadores[$i]["victorias"] * 100 / $arrayJugadores[$i]["partidas"] . "%";
-//             echo "\nAdivinadas: \n";
-//             echo "  Intento 1: " . $arrayJugadores[$i]["intento1"] . "\n";
-//             echo "  Intento 2: " . $arrayJugadores[$i]["intento2"] . "\n";
-//             echo "  Intento 3: " . $arrayJugadores[$i]["intento3"] . "\n";
-//             echo "  Intento 4: " . $arrayJugadores[$i]["intento4"] . "\n";
-//             echo "  Intento 5: " . $arrayJugadores[$i]["intento5"] . "\n";
-//             echo "  Intento 6: " . $arrayJugadores[$i]["intento6"] . "\n";
-//             echo "*******************************";
-//         }
-//     }
-// }
 /**
  *(dado un nombre y una coleccion de partias, realiza un resumen en base al nombre y lo muestra)
  *@param array $colePartidas
