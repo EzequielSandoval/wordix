@@ -186,6 +186,7 @@ function primeraVictoria($nombJugador, $coleccionPartidas)
     $indice = 0;
     $total = $coleccionPartidas;
     $f = 0;
+    // cuenta la cantidad de elementos del arreglo
     foreach ($total as $indice) {
         $f = $f + 1;
     }
