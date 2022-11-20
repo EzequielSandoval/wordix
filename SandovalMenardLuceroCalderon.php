@@ -350,16 +350,59 @@ function agregarPartida($colecPartida, $partidaNueva)
     return $colecPartida;
 }
 
+/** 
+ * busca si la palabra ingresada se encuentra dentro del arreglo.
+* @param array $colePalabras
+* @param string $palabraAbuscar
+*/
+function buscarPalabra($colecPalabras, $palabraAbuscar){
+    //int $e
+    //boolean $rtaPalabra
+
+    $e=0;
+    while ((($e<count($colecPalabras))&&!(strtoupper($palabraAbuscar) == $colecPalabras[$e]))) {               
+        $e=$e+1;
+    }
+    if($e<count($colecPalabras)){
+        $rtaPalabra=true;
+    }else{
+        $rtaPalabra=false;
+    }
+    return $rtaPalabra;
+}
+
+/** 
+* busca si el nombre de un jugador esta dentro del arreglo de partidas jugadas.
+* @param array $coleccionPar
+* @param string $nombr
+*/
+function buscarNombre($coleccionPar, $nombr){
+    //int $i,
+    //boolean $resultadoBusqueda
+    $i=0;
+    
+    while(($i<count($coleccionPar)) && !($nombr==$coleccionPar[$i]["jugador"])){
+        $i=$i+1;
+    }
+
+    if($i<count($coleccionPar)){
+        $resultadoBusqueda=true;
+    }else{
+        $resultadoBusqueda=false;
+    }
+
+    return $resultadoBusqueda;
+}
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
 
 //DECLARACION DE VARIABLES:
 
-// int $opcion,$cantidadPalabras,$numeroPalabra,$i,$sumaPalaAleatoria,$numeroPalaAleatoria,$cantPartidas,$var,$numPartidaVer,$llave,$resultado
+// int $opcion,$cantidadPalabras,$numeroPalabra,$i,$sumaPalaAleatoria,$numeroPalaAleatoria,$cantPartidas,$var,$numPartidaVer,$llave,$resultado, $palabraDisp
 // string $jugadorWordix,$palNueva,$nombreEstadis
 // array $verColeccionPartidas,$verColeccionPalabras,$partida
-// boolean $esPalabraUsada
+// boolean $esPalabraUsada, $jugadorExis, $nombreEstadisExist, $palabraExiste
 
 //Inicialización de variables:
 $verColeccionPartidas = cargarPartidas();
@@ -459,42 +502,38 @@ do {
             break;
         case 4:
             $jugadorWordix = solicitarJugador();
+            $jugadorExis = buscarNombre($verColeccionPartidas, $jugadorWordix);
             $llave = primeraVictoria($jugadorWordix, $verColeccionPartidas);
-            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
-                if (($llave == -1) && ($verColeccionPartidas[$i]["jugador"] == $jugadorWordix)) {
-                    echo "\n" . "el jugador " . trim($verColeccionPartidas[$i]["jugador"]) . " no gano " . "\n";
-                    $llave = 999999;
-                }
+            $i=0;
+            
+            if (($llave == -1) && ($jugadorExis==true)){
+                echo "\n" . "el jugador " . $jugadorWordix . " no gano " . "\n";
+                  
+            }elseif(($llave==-1) && ($jugadorExis==false)){
+                echo "\n" . "NO EXISTE JUGADOR" . "\n";
+            }else{
+                datosPartida($verColeccionPartidas, $llave);
             }
-            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
-                if (($llave == -1) && ($verColeccionPartidas[$i]["jugador"] != $jugadorWordix)) {
-                    echo "\n" . "NO EXISTE JUGADOR" . "\n";
-                    $llave = 9999999;
-                }
-            }
-            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
-                if ($llave == $i) {
-                    datosPartida($verColeccionPartidas, $llave);
-                }
-            }
+            
             break;
         case 5:
-            #5) Mostrar estadisticas jugador
+           #5) Mostrar estadisticas jugador
             $nombreEstadis = solicitarJugador();
+            $nombreEstadisExist=buscarNombre($verColeccionPartidas, $nombreEstadis);
+            
             $resultado = 0;
-            for ($l = 0; $l < count($verColeccionPartidas); $l++) {
-                if ($nombreEstadis == $verColeccionPartidas[$l]["jugador"]) {
-                    $resultado = 1;
-                }
+            
+            if($nombreEstadisExist==true){
+                $resultado=1;
             }
+            
             while (($resultado == 0)) {
                 echo "el jugador ingresado no a jugado ninguna partida \n";
                 $nombreEstadis = solicitarJugador();
-                for ($l = 0; $l < count($verColeccionPartidas); $l++) {
-                    if ($verColeccionPartidas[$l]["jugador"] == $nombreEstadis) {
-                        $resultado = 1;
-                    }
-                }
+                $nombreEstadisExist=buscarNombre($verColeccionPartidas, $nombreEstadis);
+                if ($nombreEstadisExist==true){
+                    $resultado = 1;
+                }               
             }
             devuelveResumen($verColeccionPartidas, $nombreEstadis);
             break;
@@ -503,16 +542,25 @@ do {
             ordenarColeccionPartidas($verColeccionPartidas);
             break;
         case 7:
-            #7) Agregar una palabra de 5 letras a Wordix
+           #7) Agregar una palabra de 5 letras a Wordix
+            
             $palNueva = leerPalabra5Letras();
-            for ($e = 0; $e < count($verColeccionPalabras); $e++) {
-                while (strtoupper($palNueva) == $verColeccionPalabras[$e]) {
-                    echo "esa palabra ya existe, eliga otra\n";
-                    $pal = 1;
-                    if ($pal == 1) {
-                        $palNueva = leerPalabra5Letras();
-                    }
+            $palabraExiste=buscarPalabra($verColeccionPalabras, $palNueva);
+            if($palabraExiste==false){
+                $palabraDisp=1;
+            }else{
+                $palabraDisp=0;
+            }
+            while($palabraDisp==0){
+                echo "esa palabra ya existe, ingrese otra: "."\n";
+                $palNueva = leerPalabra5Letras();
+                $palabraExiste=buscarPalabra($verColeccionPalabras, $palNueva);
+                if($palabraExiste==false){
+                    $palabraDisp=1;
+                }else{
+                    $palabraDisp=0;
                 }
+
             }
             $verColeccionPalabras = agregarPalabra($verColeccionPalabras, $palNueva);
             break;
