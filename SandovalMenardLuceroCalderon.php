@@ -16,26 +16,6 @@ include_once("wordix.php");
 /***** DEFINICION DE FUNCIONES ********/
 /**************************************/
 
-//--------------------PUNTO C DE LA EXPLICACION 2 --------------------
-
-/**
- * muestra el resumen de jugadores
- * @return array
- */
-
-/*
-function cargarResumenJugador()
-{
-    $resumenJugador = [];
-    $resumenJugador[0] = ["jugador" => "majo", "partidas" => 2, "puntaje" => 15, "victorias" => 1, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 1, "intento5" => 0, "intento6" => 1];
-    $resumenJugador[1] = ["jugador" => "rudolf", "partidas" => 2, "puntaje" => 30, "victorias" => 2, "intento1" => 0, "intento2" => 0, "intento3" => 2, "intento4" => 0, "intento5" => 0, "intento6" => 0];
-    $resumenJugador[2] = ["jugador" => "pink2000", "partidas" => 2, "puntaje" => 20, "victorias" => 2, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 1, "intento5" => 0, "intento6" => 1];
-    $resumenJugador[3] = ["jugador" => "lucas", "partidas" => 1, "puntaje" => 0, "victorias" => 0, "intento1" => 0, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 1];
-    $resumenJugador[4] = ["jugador" => "maria", "partidas" => 1, "puntaje" => 13, "victorias" => 1, "intento1" => 0, "intento2" => 1, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 0];
-    $resumenJugador[5] = ["jugador" => "mario", "partidas" => 2, "puntaje" => 28, "victorias" => 2, "intento1" => 1, "intento2" => 0, "intento3" => 0, "intento4" => 0, "intento5" => 0, "intento6" => 1];
-    return ($resumenJugador);
-}
-*/
 //-------------------- PUNTO 1 DE LA EXPLICACION 3 --------------------
 /**                           
  * Obtiene una colección de palabras
@@ -137,7 +117,7 @@ function seleccionarOpcion()
 
 //--------------------PUNTO 6 DE LA EXPLICACION 3 --------------------
 /** dado un numero de partida muestra en pantalla los datos de la misma
- * @param array $partidas
+ * @param array $arrayPartidas
  * @param int $numPartida
  * @return 
  */
@@ -224,7 +204,6 @@ function devuelveResumen($colePartidas, $nomJugador)
             "intento5" => 0,
             "intento6" => 0
         ];
-
     for ($i = 0; $i < count($colePartidas); $i++) {
         if ($colePartidas[$i]["jugador"] == $nomJugador) {
             $resumen["jugador"]  = $nomJugador;
@@ -255,7 +234,6 @@ function devuelveResumen($colePartidas, $nomJugador)
             }
         }
     }
-    // return $resumen  (podriamos retornar el resumen tambien)
     echo "\n*******************************";
     echo "\nJugador: " . $resumen["jugador"];
     echo "\nPartidas: " . $resumen["partidas"];
@@ -276,7 +254,6 @@ function devuelveResumen($colePartidas, $nomJugador)
  * solicita al usuario el nombre de un jugador y lo retorna en minusculas                                                                          
  * @return string
  */
-
 function solicitarJugador()
 {
     //string $nombreSolicitado
@@ -295,47 +272,46 @@ function solicitarJugador()
     }
     if ($vof == true) {
         $soliNomb = strtolower($soliNomb);
-        //echo "\n" . $soliNomb;
     }
     return $soliNomb;
 }
 //--------------------PUNTO 11 EXPLICACION 3 --------------------
+/**
+ * (ordena por nombre del jugador, si el nombre es el mismo lo ordena por palabra )
+ *@param array $a
+ *@param array $b
+ *@return int
+ */
+function ordenado($a, $b,)
+{
+    // int $orden
+    if ($a["jugador"] == $b["jugador"]) {
+        if ($a["palabraWordix"] == $b["palabraWordix"]) {
+            $orden = 0;
+        } elseif ($a["palabraWordix"] < $b["palabraWordix"]) {
+            $orden = -1;
+        } else {
+            $orden = 1;
+        }
+    } elseif ($a["jugador"] < $b["jugador"]) {
+        $orden = -1;
+    } else {
+        $orden = 1;
+    }
+    return $orden;
+}
+
 /**
  * ( muestra la colección de partidas ordenada por el nombre del jugador y por la palabra)
  * @param array $coleccPartidas
  */
 function ordenarColeccionPartidas($coleccPartidas)
 {
-    /**
-     * (ordena por nombre del jugador, si el nombre es el mismo lo ordena por palabra )
-     *@param array $a
-     *@param array $b
-     *@return int
-     */
-    function ordenado($a, $b,)
-    {
-        if ($a["jugador"] == $b["jugador"]) {
-
-            if ($a["palabraWordix"] == $b["palabraWordix"]) {
-                $orden = 0;
-            } elseif ($a["palabraWordix"] < $b["palabraWordix"]) {
-                $orden = -1;
-            } else {
-                $orden = 1;
-            }
-        } elseif ($a["jugador"] < $b["jugador"]) {
-            $orden = -1;
-        } else {
-            $orden = 1;
-        }
-        return $orden;
-    }
-
     uasort($coleccPartidas, 'ordenado');
     echo "********** ORDENADO POR NOMBRE (EN CASO DE QUE EL NOMBRE SEA EL MISMO LO ORDENA POR PALABRA) **********\n";
     print_r($coleccPartidas);
 }
-//-------------------- PODRIA SERVIR UN POQUIS --------------------
+
 /**
  * (agrega una nueva partida al juego)
  * @param array $colecPartida
@@ -349,52 +325,53 @@ function agregarPartida($colecPartida, $partidaNueva)
     $colecPartida[$totalPartidas] = $partidaNueva;
     return $colecPartida;
 }
-//------------------------------------------------------------------
+
+/*--------------------------FUNCIONES COMPLEMENTARIAS------------------------------*/
 /** 
  * busca si la palabra ingresada se encuentra dentro del arreglo.
-* @param array $colePalabras
-* @param string $palabraAbuscar
-* @return boolean
-*/
-function buscarPalabra($colecPalabras, $palabraAbuscar){
+ * @param array $colePalabras
+ * @param string $palabraAbuscar
+ * @return boolean
+ */
+function buscarPalabra($colecPalabras, $palabraAbuscar)
+{
     //int $e
     //boolean $rtaPalabra
-
-    $e=0;
-    while ((($e<count($colecPalabras))&&!(strtoupper($palabraAbuscar) == $colecPalabras[$e]))) {               
-        $e=$e+1;
+    $e = 0;
+    while ((($e < count($colecPalabras)) && !(strtoupper($palabraAbuscar) == $colecPalabras[$e]))) {
+        $e = $e + 1;
     }
-    if($e<count($colecPalabras)){
-        $rtaPalabra=true;
-    }else{
-        $rtaPalabra=false;
+    if ($e < count($colecPalabras)) {
+        $rtaPalabra = true;
+    } else {
+        $rtaPalabra = false;
     }
     return $rtaPalabra;
 }
+
 //------------------------------------------------------------------
 /** 
-* busca si el nombre de un jugador esta dentro del arreglo de partidas jugadas.
-* @param array $coleccionPar
-* @param string $nombr
-* @return boolean
-*/
-function buscarNombre($coleccionPar, $nombr){
+ * busca si el nombre de un jugador esta dentro del arreglo de partidas jugadas.
+ * @param array $coleccionPar
+ * @param string $nombr
+ * @return boolean
+ */
+function buscarNombre($coleccionPar, $nombr)
+{
     //int $i,
     //boolean $resultadoBusqueda
-    $i=0;
-    
-    while(($i<count($coleccionPar)) && !($nombr==$coleccionPar[$i]["jugador"])){
-        $i=$i+1;
+    $i = 0;
+    while (($i < count($coleccionPar)) && !($nombr == $coleccionPar[$i]["jugador"])) {
+        $i = $i + 1;
     }
-
-    if($i<count($coleccionPar)){
-        $resultadoBusqueda=true;
-    }else{
-        $resultadoBusqueda=false;
+    if ($i < count($coleccionPar)) {
+        $resultadoBusqueda = true;
+    } else {
+        $resultadoBusqueda = false;
     }
-
     return $resultadoBusqueda;
 }
+
 /**************************************/
 /*********** PROGRAMA PRINCIPAL *******/
 /**************************************/
@@ -441,7 +418,7 @@ do {
             echo "ingrese un numero de palabra para jugar: \n";
             $cantidadPalabras = count($verColeccionPalabras);
             $numeroPalabra = solicitarNumeroEntre(1, $cantidadPalabras);
-            $i=0;
+            $i = 0;
 
             /*for ($i = 0; $i < count($verColeccionPartidas); $i++) {
                 if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && ($verColeccionPalabras[$numeroPalabra - 1] == $verColeccionPartidas[$i]["palabraWordix"])) {
@@ -452,18 +429,18 @@ do {
                 } 
             }*/
 
-            do{
-                while ($i < count($verColeccionPartidas) && ($jugadorWordix != $verColeccionPartidas[$i]["jugador"] || $verColeccionPalabras[$numeroPalabra - 1] != $verColeccionPartidas[$i]["palabraWordix"])){  
-                    $i=$i+1;
+            do {
+                while ($i < count($verColeccionPartidas) && ($jugadorWordix != $verColeccionPartidas[$i]["jugador"] || $verColeccionPalabras[$numeroPalabra - 1] != $verColeccionPartidas[$i]["palabraWordix"])) {
+                    $i = $i + 1;
                 }
-                if($i < count($verColeccionPartidas)){
+                if ($i < count($verColeccionPartidas)) {
                     echo "la palabra " . $verColeccionPalabras[$numeroPalabra - 1] .  " ya fue utilizada por el jugador: " . $jugadorWordix . "\n";
                     echo "ingrese otro numero de palabra para jugar: ";
                     $numeroPalabra = solicitarNumeroEntre(1, $cantidadPalabras);
                     $i = 0;
                 }
-            }while($i==0);
-            
+            } while ($i == 0);
+
             $partida = jugarWordix($verColeccionPalabras[$numeroPalabra - 1], strtolower($jugadorWordix));
             //(VER EL AGREGADO DE PARTIDAS)
             //echo "*********ANTES DE AGREGAR LA PARTIDA********";
@@ -479,25 +456,23 @@ do {
             $sumaPalaAleatoria = (count($verColeccionPalabras) - 1);
             $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
             $jugadorWordix = solicitarJugador();
-            $i=0;
-            
+            $i = 0;
+
             /*for ($i = 0; $i < count($verColeccionPartidas); $i++) {
                 if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && ($verColeccionPalabras[$numeroPalaAleatoria] == $verColeccionPartidas[$i]["palabraWordix"])) {
                     $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
                     $i = -1;
                 } 
             }*/
-
-            do{
-                while ($i < count($verColeccionPartidas) && ($jugadorWordix != $verColeccionPartidas[$i]["jugador"] || $verColeccionPalabras[$numeroPalaAleatoria] != $verColeccionPartidas[$i]["palabraWordix"])){  
-                    $i=$i+1;
+            do {
+                while ($i < count($verColeccionPartidas) && ($jugadorWordix != $verColeccionPartidas[$i]["jugador"] || $verColeccionPalabras[$numeroPalaAleatoria] != $verColeccionPartidas[$i]["palabraWordix"])) {
+                    $i = $i + 1;
                 }
-                if($i < count($verColeccionPartidas)){
+                if ($i < count($verColeccionPartidas)) {
                     $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
                     $i = 0;
                 }
-            }while($i==0);
-
+            } while ($i==0);
             $partida = jugarWordix($verColeccionPalabras[$numeroPalaAleatoria], strtolower($jugadorWordix));
             //(VER EL AGREGADO DE PARTIDAS)
             //echo "*********ANTES DE AGREGAR LA PARTIDA********";
@@ -520,36 +495,33 @@ do {
             $jugadorWordix = solicitarJugador();
             $jugadorExis = buscarNombre($verColeccionPartidas, $jugadorWordix);
             $llave = primeraVictoria($jugadorWordix, $verColeccionPartidas);
-            $i=0;
-            
-            if (($llave == -1) && ($jugadorExis==true)){
+            $i = 0;
+            if (($llave == -1) && ($jugadorExis == true)) {
                 echo "\n" . "el jugador " . $jugadorWordix . " no gano " . "\n";
-                  
-            }elseif(($llave==-1) && ($jugadorExis==false)){
+            } elseif (($llave == -1) && ($jugadorExis == false)) {
                 echo "\n" . "NO EXISTE JUGADOR" . "\n";
-            }else{
+            } else {
                 datosPartida($verColeccionPartidas, $llave);
             }
-            
             break;
         case 5:
-           #5) Mostrar estadisticas jugador
+            #5) Mostrar estadisticas jugador
             $nombreEstadis = solicitarJugador();
-            $nombreEstadisExist=buscarNombre($verColeccionPartidas, $nombreEstadis);
-            
+            $nombreEstadisExist = buscarNombre($verColeccionPartidas, $nombreEstadis);
+
             $resultado = 0;
-            
-            if($nombreEstadisExist==true){
-                $resultado=1;
+
+            if ($nombreEstadisExist == true) {
+                $resultado = 1;
             }
-            
+
             while (($resultado == 0)) {
                 echo "el jugador ingresado no a jugado ninguna partida \n";
                 $nombreEstadis = solicitarJugador();
-                $nombreEstadisExist=buscarNombre($verColeccionPartidas, $nombreEstadis);
-                if ($nombreEstadisExist==true){
+                $nombreEstadisExist = buscarNombre($verColeccionPartidas, $nombreEstadis);
+                if ($nombreEstadisExist == true) {
                     $resultado = 1;
-                }               
+                }
             }
             devuelveResumen($verColeccionPartidas, $nombreEstadis);
             break;
@@ -558,25 +530,24 @@ do {
             ordenarColeccionPartidas($verColeccionPartidas);
             break;
         case 7:
-           #7) Agregar una palabra de 5 letras a Wordix
-            
-            $palNueva = leerPalabra5Letras();
-            $palabraExiste=buscarPalabra($verColeccionPalabras, $palNueva);
-            if($palabraExiste==false){
-                $palabraDisp=1;
-            }else{
-                $palabraDisp=0;
-            }
-            while($palabraDisp==0){
-                echo "esa palabra ya existe, ingrese otra: "."\n";
-                $palNueva = leerPalabra5Letras();
-                $palabraExiste=buscarPalabra($verColeccionPalabras, $palNueva);
-                if($palabraExiste==false){
-                    $palabraDisp=1;
-                }else{
-                    $palabraDisp=0;
-                }
+            #7) Agregar una palabra de 5 letras a Wordix
 
+            $palNueva = leerPalabra5Letras();
+            $palabraExiste = buscarPalabra($verColeccionPalabras, $palNueva);
+            if ($palabraExiste == false) {
+                $palabraDisp = 1;
+            } else {
+                $palabraDisp = 0;
+            }
+            while ($palabraDisp == 0) {
+                echo "esa palabra ya existe, ingrese otra: " . "\n";
+                $palNueva = leerPalabra5Letras();
+                $palabraExiste = buscarPalabra($verColeccionPalabras, $palNueva);
+                if ($palabraExiste == false) {
+                    $palabraDisp = 1;
+                } else {
+                    $palabraDisp = 0;
+                }
             }
             $verColeccionPalabras = agregarPalabra($verColeccionPalabras, $palNueva);
             break;
