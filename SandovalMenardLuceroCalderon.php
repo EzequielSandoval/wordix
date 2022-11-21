@@ -335,7 +335,7 @@ function ordenarColeccionPartidas($coleccPartidas)
     echo "********** ORDENADO POR NOMBRE (EN CASO DE QUE EL NOMBRE SEA EL MISMO LO ORDENA POR PALABRA) **********\n";
     print_r($coleccPartidas);
 }
-//--------------------PODRIA SERVIR UN POQUIS --------------------
+//-------------------- PODRIA SERVIR UN POQUIS --------------------
 /**
  * (agrega una nueva partida al juego)
  * @param array $colecPartida
@@ -349,11 +349,12 @@ function agregarPartida($colecPartida, $partidaNueva)
     $colecPartida[$totalPartidas] = $partidaNueva;
     return $colecPartida;
 }
-
+//------------------------------------------------------------------
 /** 
  * busca si la palabra ingresada se encuentra dentro del arreglo.
 * @param array $colePalabras
 * @param string $palabraAbuscar
+* @return boolean
 */
 function buscarPalabra($colecPalabras, $palabraAbuscar){
     //int $e
@@ -370,11 +371,12 @@ function buscarPalabra($colecPalabras, $palabraAbuscar){
     }
     return $rtaPalabra;
 }
-
+//------------------------------------------------------------------
 /** 
 * busca si el nombre de un jugador esta dentro del arreglo de partidas jugadas.
 * @param array $coleccionPar
 * @param string $nombr
+* @return boolean
 */
 function buscarNombre($coleccionPar, $nombr){
     //int $i,
@@ -439,21 +441,29 @@ do {
             echo "ingrese un numero de palabra para jugar: \n";
             $cantidadPalabras = count($verColeccionPalabras);
             $numeroPalabra = solicitarNumeroEntre(1, $cantidadPalabras);
-            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
-                do {
-                    if (($verColeccionPalabras[$numeroPalabra - 1] == $verColeccionPartidas[$i]["palabraWordix"])) {
-                        $esPalabraUsada = true;
-                    } else {
-                        $esPalabraUsada = false;
-                    }
-                    if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada) {
-                        echo "la palabra " . $verColeccionPalabras[$numeroPalabra - 1] .  " ya fue utilizada por el jugador: " . $jugadorWordix . "\n";
-                        echo "ingrese otro numero de palabra para jugar: ";
-                        $numeroPalabra = solicitarNumeroEntre(1, $cantidadPalabras);
-                        $i = 0;
-                    }
-                } while ((($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada));
-            }
+            $i=0;
+
+            /*for ($i = 0; $i < count($verColeccionPartidas); $i++) {
+                if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && ($verColeccionPalabras[$numeroPalabra - 1] == $verColeccionPartidas[$i]["palabraWordix"])) {
+                    echo "la palabra " . $verColeccionPalabras[$numeroPalabra - 1] .  " ya fue utilizada por el jugador: " . $jugadorWordix . "\n";
+                    echo "ingrese otro numero de palabra para jugar: ";
+                    $numeroPalabra = solicitarNumeroEntre(1, $cantidadPalabras);
+                    $i = -1;
+                } 
+            }*/
+
+            do{
+                while ($i < count($verColeccionPartidas) && ($jugadorWordix != $verColeccionPartidas[$i]["jugador"] || $verColeccionPalabras[$numeroPalabra - 1] != $verColeccionPartidas[$i]["palabraWordix"])){  
+                    $i=$i+1;
+                }
+                if($i < count($verColeccionPartidas)){
+                    echo "la palabra " . $verColeccionPalabras[$numeroPalabra - 1] .  " ya fue utilizada por el jugador: " . $jugadorWordix . "\n";
+                    echo "ingrese otro numero de palabra para jugar: ";
+                    $numeroPalabra = solicitarNumeroEntre(1, $cantidadPalabras);
+                    $i = 0;
+                }
+            }while($i==0);
+            
             $partida = jugarWordix($verColeccionPalabras[$numeroPalabra - 1], strtolower($jugadorWordix));
             //(VER EL AGREGADO DE PARTIDAS)
             //echo "*********ANTES DE AGREGAR LA PARTIDA********";
@@ -469,19 +479,25 @@ do {
             $sumaPalaAleatoria = (count($verColeccionPalabras) - 1);
             $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
             $jugadorWordix = solicitarJugador();
-            for ($i = 0; $i < count($verColeccionPartidas); $i++) {
-                do {
-                    if (($verColeccionPalabras[$numeroPalaAleatoria] == $verColeccionPartidas[$i]["palabraWordix"])) {
-                        $esPalabraUsada = true;
-                    } else {
-                        $esPalabraUsada = false;
-                    }
-                    if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada) {
-                        $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
-                        $i = 0;
-                    }
-                } while ((($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && $esPalabraUsada));
-            }
+            $i=0;
+            
+            /*for ($i = 0; $i < count($verColeccionPartidas); $i++) {
+                if (($jugadorWordix == $verColeccionPartidas[$i]["jugador"]) && ($verColeccionPalabras[$numeroPalaAleatoria] == $verColeccionPartidas[$i]["palabraWordix"])) {
+                    $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
+                    $i = -1;
+                } 
+            }*/
+
+            do{
+                while ($i < count($verColeccionPartidas) && ($jugadorWordix != $verColeccionPartidas[$i]["jugador"] || $verColeccionPalabras[$numeroPalaAleatoria] != $verColeccionPartidas[$i]["palabraWordix"])){  
+                    $i=$i+1;
+                }
+                if($i < count($verColeccionPartidas)){
+                    $numeroPalaAleatoria = rand(0, $sumaPalaAleatoria);
+                    $i = 0;
+                }
+            }while($i==0);
+
             $partida = jugarWordix($verColeccionPalabras[$numeroPalaAleatoria], strtolower($jugadorWordix));
             //(VER EL AGREGADO DE PARTIDAS)
             //echo "*********ANTES DE AGREGAR LA PARTIDA********";
