@@ -21,8 +21,8 @@ include_once("wordix.php");
  * Obtiene una colección de palabras
  * @return array
  */
-function cargarColeccionPalabras()
-{
+function cargarColeccionPalabras(){
+    //array $coleccionPalabras
     $coleccionPalabras = [
         "MUJER", "QUESO", "FUEGO", "CASAS", "RASGO",
         "GATOS", "GOTAS", "HUEVO", "TINTO", "NAVES",
@@ -38,8 +38,8 @@ function cargarColeccionPalabras()
  * (muestra las primeras 10 partidas del wordix)
  * @return array
  */
-function cargarPartidas()
-{
+function cargarPartidas(){
+    //array $coleccion, $pa1, $pa2, $pa3, $pa4, $pa5, $pa6, $pa7, $pa8, $pa9, $pa10, $pa11, $pa12
     /*
     $coleccionPartidas = [];
     $coleccionPartidas[0] = ["palabraWordix" => "QUESO", "jugador" => "majo", "intentos" => 6, "puntaje" => 0];
@@ -81,9 +81,7 @@ function cargarPartidas()
 
 function seleccionarOpcion()
 {
-    //int $opcionElegida
-    //int $numMax
-    //int $numMin
+    //int $opcionElegida, $numMax, $numMin
     //array $lasOpciones
 
     $lasOpciones[0] = "1)Jugar wordix con una palabra elegida.";
@@ -161,17 +159,16 @@ function agregarPalabra($colecPalabras, $palabraNueva)
  */
 function primeraVictoria($nombJugador, $coleccionPartidas)
 {
-    //$f, $n, $indice int
-    //
+    //int $f, $n, $indice int
+    //array $total
     $indice = 0;
     $total = $coleccionPartidas;
     $f = 0;
+    $n = 0;
     // cuenta la cantidad de elementos del arreglo
     foreach ($total as $indice) {
         $f = $f + 1;
     }
-
-    $n = 0;
     while ($n < $f && ($coleccionPartidas[$n]["jugador"] != $nombJugador || $coleccionPartidas[$n]["puntaje"] == 0)) {
         $n = $n + 1;
     }
@@ -259,12 +256,12 @@ function solicitarJugador()
     //string $nombreSolicitado
     //boolean $vof
     //array $primLetra
-    echo "ingrese un nombre:\n";
+    echo "\ningrese un nombre: ";
     $soliNomb = trim(fgets(STDIN));
     $primLetra = str_split($soliNomb);
     $vof = ctype_alpha($primLetra[0]);
     while ($vof == false) {
-        echo "el nombre no es valido\n";
+        echo "\nel nombre no es valido\n";
         echo "ingrese otro nombre: ";
         $soliNomb = trim(fgets(STDIN));
         $primLetra = str_split($soliNomb);
